@@ -1,0 +1,54 @@
+.db-home-slider {
+  .home-slider {
+    img {
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+      max-height: 685px;
+      width: 1280px;
+      margin: auto;
+    }
+
+    .swiper-button-prev {
+      width: 42px;
+      height: 42px;
+      left: 10px;
+      top: 50%;
+      transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
+      background-color: white;
+      color: black;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+
+    .swiper-button-next {
+      width: 42px;
+      height: 42px;
+      right: 10px;
+      transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
+      background-color: white;
+      color: black;
+      border-radius: 50%;
+
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+    }
+
+    .swiper-pagination-bullet {
+      background-color: #cacacaff;
+      opacity: 1;
+      width: 12px;
+      height: 12px;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: black;
+    }
+  }
+}

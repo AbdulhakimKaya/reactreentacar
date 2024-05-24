@@ -1,0 +1,19 @@
+.db-admin-layout {
+  padding: 10px;
+
+  .content-main {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    overflow: auto;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .content-main{
+      margin-left: 0;
+    }
+  }
+}

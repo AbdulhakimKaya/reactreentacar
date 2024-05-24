@@ -1,0 +1,118 @@
+.vehicle-detail {
+  .product-images-swiper {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    position: relative;
+
+    .product-images-slider {
+      padding-bottom: 30px;
+      transition: 0.3s all;
+
+      .swiper-slide {
+        height: 360px;
+        overflow: hidden;
+        position: relative;
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          translate: -50% -50%;
+          width: auto;
+          max-width: 620px;
+          height: auto;
+          max-height: 420px;
+          object-fit: contain;
+        }
+      }
+
+      &:hover {
+        .swiper-button-prev,
+        .swiper-button-next {
+          visibility: visible;
+        }
+      }
+
+      .swiper-button-prev {
+        visibility: hidden;
+        width: 36px;
+        height: 36px;
+        left: 10px;
+        top: 50%;
+        transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
+        background-color: white;
+        color: black;
+        border-radius: 50%;
+
+        &:hover {
+          background-color: black;
+          color: white;
+        }
+      }
+
+      .swiper-button-next {
+        visibility: hidden;
+        width: 36px;
+        right: 10px;
+        height: 36px;
+        transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
+        background-color: white;
+        color: black;
+        border-radius: 50%;
+
+        &:hover {
+          background-color: black;
+          color: white;
+        }
+      }
+    }
+
+    .thumbs {
+      position: relative;
+
+      .product-images-slider-thumbs {
+        display: flex;
+        justify-content: center;
+        transition: 300ms opacity;
+        z-index: 1;
+
+        .swiper-slide {
+          cursor: pointer;
+          border: 1px solid #eff3f4;
+          padding: 10px;
+          height: 120px;
+
+          &-thumb-active {
+            border-color: #b4b4b4;
+          }
+        }
+
+        &-wrapper {
+          width: 100%;
+          padding-top: 100%;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+
+          img {
+            padding: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .vehicle-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    margin-left: 80px;
+  }
+}

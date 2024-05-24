@@ -1,0 +1,17 @@
+.db-contact {
+  .divider-border-color {
+    border-color: #cacacaff;
+  }
+
+  .contact-content {
+    svg {
+      width: 24px;
+      height: 24px;
+      color: #333333ff;
+    }
+  }
+
+  .ant-timeline-item-head {
+    margin-inline-start: 10px;
+  }
+}
