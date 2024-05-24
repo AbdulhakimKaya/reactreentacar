@@ -1,85 +1,63 @@
-import {Link} from "react-router-dom";
 import React from "react";
 import {
     AppstoreOutlined,
     CarOutlined,
+    ContactsOutlined,
+    FileTextOutlined,
     FilterOutlined,
-    MailOutlined,
-    RollbackOutlined, UserOutlined
+    PicCenterOutlined,
+    RollbackOutlined,
+    UserOutlined
 } from "@ant-design/icons";
 
 
 export const SidebarMenuItems = [
     {
+        key: '0',
+        icon: <AppstoreOutlined/>,
+        label: 'Anasayfa',
+        url: '/admin'
+    },
+    {
         key: '1',
         icon: <CarOutlined/>,
-        label: 'Araçlar'
+        label: 'Araçlar',
+        url: '/admin/araclar'
     },
     {
         key: '2',
         icon: <FilterOutlined/>,
-        label: 'Filtreler'
+        label: 'Filtreler',
+        url: '/admin/filtreler'
     },
     {
         key: '3',
         icon: <UserOutlined/>,
-        label: 'Hesabım'
+        label: 'Hesabım',
+        url: '/admin/hesabim'
     },
     {
-        key: 'sub1',
-        label: 'Navigation One',
-        icon: <MailOutlined/>,
-        children: [
-            {
-                key: '5',
-                label: 'Option 5'
-            },
-            {
-                key: '6',
-                label: 'Option 6'
-            },
-            {
-                key: '7',
-                label: 'Option 7'
-            },
-            {
-                key: '8',
-                label: 'Option 8'
-            },
-        ],
+        key: '4',
+        icon: <PicCenterOutlined/>,
+        label: "Anasayfa Slayt'lar",
+        url: '/admin/slaytlar'
     },
     {
-        key: 'sub2',
-        label: 'Navigation Two',
-        icon: <AppstoreOutlined/>,
-        children: [
-            {
-                key: '9',
-                label: 'Option 9'
-            },
-            {
-                key: '10',
-                label: 'Option 10'
-            },
-            {
-                key: 'sub3',
-                label: 'Submenu',
-                children: [
-                    {
-                        key: '11',
-                        label: 'Option 11'
-                    },
-                    {
-                        key: '12',
-                        label: 'Option 12'
-                    },
-                ],
-            },
-        ],
+        key: '5',
+        icon: <FileTextOutlined/>,
+        label: 'Hakkımızda Sayfası İçeriği',
+        url: '/admin/hakkimizda'
     },
     {
-        key: '13',
+        key: '6',
+        icon: <ContactsOutlined/>,
+        label: 'İletişim Sayfası İçeriği',
+        url: '/admin/iletisim'
+    },
+    {
+        key: '10',
         icon: <RollbackOutlined/>,
-        label: <Link to={"/"}>Siteye Geri Dön</Link>
+        label: "Siteye Geri Dön",
+        url: '/'
     },
 ]

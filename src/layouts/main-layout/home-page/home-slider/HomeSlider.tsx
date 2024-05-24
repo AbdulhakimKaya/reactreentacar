@@ -31,7 +31,7 @@ const HomeSlider = () => {
             <div className="home-slider pt-4">
                 <Swiper
                     modules={[Pagination, Navigation, Scrollbar, A11y, Autoplay]}
-                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    autoplay={{ delay: 7000, disableOnInteraction: false }}
                     speed={600}
                     loop={true}
                     spaceBetween={16}

@@ -3,7 +3,7 @@ import './VehicleDetail.scss'
 
 // Import Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
+import {Navigation, Thumbs, FreeMode, Pagination} from 'swiper/modules';
 import { Swiper as SwiperType } from 'swiper';
 import {Col, Descriptions, Row} from "antd";
 import {VehiclesMockData} from "../../../mock/vehiclesMockData";
@@ -117,10 +117,10 @@ const VehicleDetail = () => {
                             <div className="thumbs">
                                 <Swiper
                                     onSwiper={handleSwiper}
+                                    modules={[Navigation, Thumbs, FreeMode]}
                                     loop={false}
                                     spaceBetween={10}
                                     slidesPerView={3}
-                                    modules={[Navigation, Thumbs, FreeMode]}
                                     className="product-images-slider-thumbs"
                                 >
                                     {cars?.map((car, index) => (

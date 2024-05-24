@@ -45,16 +45,18 @@ const HomeVehicleList = () => {
             >
                 {
                     items.map((item, index) => (
-                        <SwiperSlide key={index} className="py-10 px-5">
-                            <VehicleListItem
-                                id={item.id}
-                                title={item.title}
-                                description={item.description}
-                                images={item.images}
-                                price={item.price}
-                                isAvailable={item.isAvailable}
-                            />
-                        </SwiperSlide>
+                        item.isAvailable && (
+                            <SwiperSlide key={index} className="py-10 px-5">
+                                <VehicleListItem
+                                    id={item.id}
+                                    title={item.title}
+                                    description={item.description}
+                                    images={item.images}
+                                    price={item.price}
+                                    isAvailable={item.isAvailable}
+                                />
+                            </SwiperSlide>
+                        )
                     ))
                 }
             </Swiper>
@@ -73,16 +75,18 @@ const HomeVehicleList = () => {
             >
                 {
                     items.map((item, index) => (
-                        <SwiperSlide key={index} className="py-10 px-5">
-                            <VehicleListItem
-                                id={item.id}
-                                title={item.title}
-                                description={item.description}
-                                images={item.images}
-                                price={item.price}
-                                isAvailable={item.isAvailable}
-                            />
-                        </SwiperSlide>
+                        item.isAvailable && (
+                            <SwiperSlide key={index} className="py-10 px-5">
+                                <VehicleListItem
+                                    id={item.id}
+                                    title={item.title}
+                                    description={item.description}
+                                    images={item.images}
+                                    price={item.price}
+                                    isAvailable={item.isAvailable}
+                                />
+                            </SwiperSlide>
+                        )
                     ))
                 }
             </Swiper>

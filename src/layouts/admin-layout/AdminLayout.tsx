@@ -21,13 +21,14 @@ const AdminLayout = () => {
     return (
         <div className={classes}>
             <Row className={classes} wrap={false}>
-                <Col style={{width: isSmallScreen ? 0 : collapsed ? 120 : 280}}>
+                {/* responsive tasarım için isSmallScreen ise 0 yapıp Sidebar'a Drawer eklenecek */}
+                <Col style={{width: isSmallScreen ? 320 : collapsed ? 120 : 320}}>
                     <Sidebar collapsed={collapsed} toggleCollapsed={toggleCollapsed}/>
                 </Col>
                 <Col flex={'auto'}>
                     <Container tag="main">
                     <div className="content-main">
-                        <Content/>
+                        <Outlet/>
                     </div>
                     </Container>
                 </Col>

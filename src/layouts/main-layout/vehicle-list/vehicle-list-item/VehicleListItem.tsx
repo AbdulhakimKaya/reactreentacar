@@ -35,7 +35,7 @@ const VehicleListItem: React.FC<ProductProps> = (props) => {
 
     return (
         <div className={classes}>
-            <div className="flex flex-col border border-[#cacacaff] p-1 w-96 product-card rounded-2xl">
+            <div className="flex flex-col border border-[#cacacaff] p-1 w-96 product-card rounded-2xl bg-[#333333ff]">
                 <Badge isAvailable={isAvailable}/>
                 <div className="product-images p-3">
                     <Swiper
@@ -60,16 +60,16 @@ const VehicleListItem: React.FC<ProductProps> = (props) => {
                     </Swiper>
                 </div>
                 <div className="flex flex-col px-4 py-8 gap-y-4 justify-between min-h-[240px]">
-                    <div className="flex justify-between items-center px-2 text-[#333333ff]">
+                    <div className="flex justify-between items-center px-2 text-white">
                         <Link to={`/arac-detay/${id}`}
-                              className="text-2xl font-semibold hover:text-black transition-all">
+                              className="text-2xl font-semibold transition-all">
                             {title}
                         </Link>
                         <div className="text-xl font-semibold">
                             {price}₺
                         </div>
                     </div>
-                    <div className="px-2 text-base">
+                    <div className="px-2 text-base text-white">
                         {truncateText(description, 80)}
                     </div>
                     <div className="flex justify-between gap-1">

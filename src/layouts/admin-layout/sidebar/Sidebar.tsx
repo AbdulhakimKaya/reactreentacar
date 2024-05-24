@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './Sidebar.scss'
 import classNames from "classnames";
 import {
@@ -7,10 +7,10 @@ import {
 } from "@ant-design/icons";
 import {Button, Menu, MenuProps} from "antd";
 import {SidebarMenuItems} from "../../../mock/SidebarMenuItems";
+import {Link, useLocation} from "react-router-dom";
 
 
 type MenuItem = Required<MenuProps>['items'][number];
-
 
 
 interface SidebarProps {
@@ -19,10 +19,20 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = (props) => {
-    const items: MenuItem[] = SidebarMenuItems
+    const items = SidebarMenuItems
 
     const {collapsed, toggleCollapsed} = props
     const classes = classNames("db-sidebar")
+
+    const { pathname } = useLocation();
+    const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+
+    useEffect(() => {
+        const currentMenuItem = items.find(item => item.url === pathname);
+        if (currentMenuItem) {
+            setSelectedKeys([currentMenuItem.key.toString()]);
+        }
+    }, [pathname]);
 
     return (
         <div className={classes}>
@@ -31,12 +41,26 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
                     {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                 </Button>
                 <Menu
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['1']}
                     mode="inline"
                     inlineCollapsed={collapsed}
-                    items={items}
-                />
+                    forceSubMenuRender={true}
+                    selectedKeys={selectedKeys}
+                    disabledOverflow={true}
+                    defaultValue={"1"}
+                >
+                    {items.map((item) =>
+                        (
+                            <Menu.Item
+                                icon={item.icon}
+                                key={item.key}
+                            >
+                                <Link className="menu-link" to={item.url}>
+                                    {item.label}
+                                </Link>
+                            </Menu.Item>
+                        )
+                    )}
+                </Menu>
             </div>
         </div>
     );

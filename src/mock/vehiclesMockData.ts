@@ -56,4 +56,28 @@ export const VehiclesMockData = [
         images: [car6, car2, car3, car4, car],
         isAvailable: true,
     },
+    {
+        id: 7,
+        title: "Volvo XC90",
+        description: "bu araba şöyle mükemmel böyle mükemmel",
+        price: 1000,
+        images: [car4, car2, car3, car],
+        isAvailable: true,
+    },
+    {
+        id: 8,
+        title: "Volvo XC90",
+        description: "bu araba şöyle mükemmel böyle mükemmel",
+        price: 1000,
+        images: [car5, car2, car3, car4, car],
+        isAvailable: true,
+    },
+    {
+        id: 9,
+        title: "Volvo XC90",
+        description: "bu araba şöyle mükemmel böyle mükemmel",
+        price: 1000,
+        images: [car6, car2, car3, car4, car],
+        isAvailable: true,
+    },
 ]

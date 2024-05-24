@@ -3,17 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './assets/css/tailwind.css';
 import reportWebVitals from './reportWebVitals';
-import {RouterProvider} from "react-router-dom";
-import routes from "./routes/Routes";
+import {BrowserRouter} from "react-router-dom";
 import '../src/assets/css/colors.scss'
 import {ConfigProvider} from "antd";
+import Routes from "./routes/Routes";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <ConfigProvider>
-        <RouterProvider router={routes}/>
+    <ConfigProvider
+        theme={{
+            token: {
+                // Seed Token
+                colorPrimary: '#84a98c',
+                colorTextBase: 'white',
+                borderRadius: 2,
+
+                // Alias Token
+                colorBgContainer: 'transparent',
+            },
+        }}
+    >
+        <BrowserRouter>
+            <Routes />
+        </BrowserRouter>
     </ConfigProvider>
 );
 
