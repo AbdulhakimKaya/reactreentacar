@@ -1,31 +1,31 @@
 export const ToolbarMenuItems = [
     {
-        key: 0,
+        key: 'anasayfa',
         label: "Anasayfa",
         url: '/',
     },
     {
-        key: 1,
+        key: 'araclar',
         label: "Araçlar",
         url: '/araclar',
     },
     {
-        key: 5,
+        key: 'giris',
         label: "Üyelik",
         url: '/giris-yap',
     },
     {
-        key: 2,
+        key: 'hakkimizda',
         label: "Hakkımızda",
         url: '/hakkimizda',
     },
     {
-        key: 3,
+        key: 'iletisim',
         label: "İletişim",
         url: '/iletisim',
     },
     {
-        key: 4,
+        key: 'admin',
         label: "Admin",
         url: '/admin',
     },

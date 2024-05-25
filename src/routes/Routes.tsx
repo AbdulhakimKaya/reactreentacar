@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBrowserRouter, useRoutes} from "react-router-dom";
+import {useRoutes} from "react-router-dom";
 import MainLayout from "../layouts/main-layout/MainLayout";
 import HomePage from "../layouts/main-layout/home-page/HomePage";
 import VehicleList from "../layouts/main-layout/vehicle-list/VehicleList";
@@ -57,6 +57,10 @@ const Routes = () => {
                 {
                     path: "filtreler",
                     element: "filtreler"
+                },
+                {
+                    path: "kullanicilar",
+                    element: "kullanicilar"
                 },
                 {
                     path: "hesabim",
