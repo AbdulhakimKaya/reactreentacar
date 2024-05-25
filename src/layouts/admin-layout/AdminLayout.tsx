@@ -6,7 +6,6 @@ import {Col, Row} from "antd";
 import {Outlet} from "react-router-dom";
 import useIsMobile from "../../hooks/useIsMobile";
 import {Container} from "reactstrap";
-import Content from "./content/Content";
 
 const AdminLayout = () => {
     const classes = classNames("db-admin-layout")
@@ -27,9 +26,11 @@ const AdminLayout = () => {
                 </Col>
                 <Col flex={'auto'}>
                     <Container tag="main">
-                    <div className="content-main">
-                        <Outlet/>
-                    </div>
+                        <div className="content-main">
+                            <div className="rounded-xl p-8 bg-white max-h-[calc(100vh-90px)] opacity-100 overflow-auto">
+                                <Outlet/>
+                            </div>
+                        </div>
                     </Container>
                 </Col>
             </Row>

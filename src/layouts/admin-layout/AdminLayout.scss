@@ -1,18 +1,17 @@
 .db-admin-layout {
   padding: 10px;
+  background-color: #f7f7fa;
+  min-height: calc(100vh - 20px);
 
   .content-main {
-    display: flex;
-    justify-content: center;
-    padding: 30px;
-    background-color: #f8f9fa;
+    padding-top: 48px;
+    background-color: #f7f7fa;
     overflow: auto;
-    width: 100%;
     border-radius: 8px;
   }
 
   @media screen and (max-width: 768px) {
-    .content-main{
+    .content-main {
       margin-left: 0;
     }
   }

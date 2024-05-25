@@ -1,16 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './Sidebar.scss'
 import classNames from "classnames";
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-} from "@ant-design/icons";
-import {Button, Menu, MenuProps} from "antd";
+import {MenuFoldOutlined, MenuUnfoldOutlined,} from "@ant-design/icons";
+import {Button, Menu} from "antd";
 import {SidebarMenuItems} from "../../../mock/SidebarMenuItems";
 import {Link, useLocation} from "react-router-dom";
-
-
-type MenuItem = Required<MenuProps>['items'][number];
 
 
 interface SidebarProps {
@@ -24,7 +18,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
     const {collapsed, toggleCollapsed} = props
     const classes = classNames("db-sidebar")
 
-    const { pathname } = useLocation();
+    const {pathname} = useLocation();
     const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
     useEffect(() => {
@@ -37,7 +31,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
     return (
         <div className={classes}>
             <div>
-                <Button type="default" onClick={toggleCollapsed} className="mb-4 ml-1 toggle-button">
+                <Button type="default" onClick={toggleCollapsed} className="mb-4 toggle-button">
                     {collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                 </Button>
                 <Menu
@@ -47,6 +41,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
                     selectedKeys={selectedKeys}
                     disabledOverflow={true}
                     defaultValue={"1"}
+                    className="rounded-xl min-h-[calc(100vh-90px)]"
                 >
                     {items.map((item) =>
                         (

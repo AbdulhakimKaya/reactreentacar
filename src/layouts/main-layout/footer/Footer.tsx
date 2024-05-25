@@ -17,7 +17,7 @@ function Footer() {
 
     return (
         <div className={classes}>
-            <div className="bg-[#c81d25] bg-opacity-5 font-semibold">
+            <div className="bg-[#FFF1F0] font-semibold">
                 <div className="flex justify-between max-w-[1280px] mx-auto mt-24 pt-10 text-sm">
                     <div className="flex flex-col gap-y-5">
                         <Link to="/">

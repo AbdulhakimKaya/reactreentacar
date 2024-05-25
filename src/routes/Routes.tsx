@@ -9,6 +9,8 @@ import About from "../layouts/main-layout/about/About";
 import Contact from "../layouts/main-layout/contact/Contact";
 import AdminLayout from "../layouts/admin-layout/AdminLayout";
 import ScrollToTop from "../helpers/ScrollToTop";
+import AdminHomePage from "../layouts/admin-layout/admin-home-page/AdminHomePage";
+import AdminVehicles from "../layouts/admin-layout/admin-vehicles/AdminVehicles";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -48,11 +50,11 @@ const Routes = () => {
             children: [
                 {
                     index: true,
-                    element: "admin main"
+                    element: <AdminHomePage/>
                 },
                 {
                     path: "araclar",
-                    element: "araçlar"
+                    element: <AdminVehicles/>
                 },
                 {
                     path: "filtreler",
