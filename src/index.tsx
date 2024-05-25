@@ -16,9 +16,10 @@ root.render(
         theme={{
             token: {
                 // Seed Token
-                colorPrimary: '#84a98c',
-                colorTextBase: 'white',
-                borderRadius: 2,
+                colorPrimary: '#c81d25',
+                // colorFillAlter: '#ff5a5f',
+                // colorTextBase: 'white',
+                // borderRadius: 2,
 
                 // Alias Token
                 colorBgContainer: 'transparent',

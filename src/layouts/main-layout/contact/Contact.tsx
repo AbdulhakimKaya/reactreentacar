@@ -31,7 +31,7 @@ const Contact = () => {
                     kısa sürede yanıt vereceğiz.
                 </p>
             </div>
-            <div className="border border-[#cacacaff] rounded-2xl py-10">
+            <div className="border border-[#c81d25] rounded-2xl py-10">
                 <Row className="py-5" gutter={24}>
                     <Col xs={24} sm={12} xl={6} className="flex flex-col">
                         <div className="text-base font-semibold text-center pb-9 pr-20">

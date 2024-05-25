@@ -5,7 +5,6 @@ import Badge from "../../../../components/badge/Badge";
 import {truncateText} from "../../../../helpers/Formatting";
 import Button from "../../../../components/button/Button";
 import {Link} from "react-router-dom";
-import { Skeleton } from 'antd';
 
 // Import Swiper React components
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -35,7 +34,7 @@ const VehicleListItem: React.FC<ProductProps> = (props) => {
 
     return (
         <div className={classes}>
-            <div className="flex flex-col border border-[#cacacaff] p-1 w-96 product-card rounded-2xl bg-[#333333ff]">
+            <div className="flex flex-col border border-[#cacacaff] p-1 w-96 product-card rounded-2xl">
                 <Badge isAvailable={isAvailable}/>
                 <div className="product-images p-3">
                     <Swiper
@@ -45,7 +44,6 @@ const VehicleListItem: React.FC<ProductProps> = (props) => {
                         pagination={{
                             clickable: true
                         }}
-                        // grabCursor={true}
                         style={{
                             "--swiper-navigation-size": "14px",
                         }}
@@ -60,16 +58,16 @@ const VehicleListItem: React.FC<ProductProps> = (props) => {
                     </Swiper>
                 </div>
                 <div className="flex flex-col px-4 py-8 gap-y-4 justify-between min-h-[240px]">
-                    <div className="flex justify-between items-center px-2 text-white">
+                    <div className="flex justify-between items-center px-2 text-[#333333ff]">
                         <Link to={`/arac-detay/${id}`}
-                              className="text-2xl font-semibold transition-all">
+                              className="text-2xl font-semibold hover:text-black transition-all">
                             {title}
                         </Link>
                         <div className="text-xl font-semibold">
                             {price}₺
                         </div>
                     </div>
-                    <div className="px-2 text-base text-white">
+                    <div className="px-2 text-base">
                         {truncateText(description, 80)}
                     </div>
                     <div className="flex justify-between gap-1">

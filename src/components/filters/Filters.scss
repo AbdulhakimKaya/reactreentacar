@@ -13,15 +13,14 @@
     }
 
     .ant-select-selector {
-      outline: none !important;
-      border-color: #cacacaff !important;
+      //outline: none !important;
+      //border-color: #cacacaff !important;
       min-width: 150px;
-      height: 32px !important;
+      height: 40px !important;
 
-      &:focus-within {
-        box-shadow: 0 0 0 2px rgba(130, 130, 130, .2) !important;
-
-      }
+      //&:focus-within {
+      //  box-shadow: 0 0 0 2px rgba(130, 130, 130, .2) !important;
+      //}
     }
   }
 }

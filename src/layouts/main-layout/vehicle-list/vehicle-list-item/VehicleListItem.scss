@@ -14,7 +14,7 @@
         -ms-user-select: none; /* IE 10 and IE 11 */
         user-select: none; /* Standard syntax */
         transition: transform 1.5s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 1.5s cubic-bezier(0, 0, 0.2, 1);
-          border-radius: 16px;
+        border-radius: 16px;
       }
 
       .swiper-button-prev {
@@ -24,11 +24,11 @@
         top: 50%;
         transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
         background-color: white;
-        color: black;
+        color: #c81d25;
         border-radius: 50%;
 
         &:hover {
-          background-color: black;
+          background-color: #c81d25;
           color: white;
         }
       }
@@ -39,11 +39,11 @@
         right: 10px;
         transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
         background-color: white;
-        color: black;
+        color: #c81d25;
         border-radius: 50%;
 
         &:hover {
-          background-color: black;
+          background-color: #c81d25;
           color: white;
         }
       }
@@ -54,14 +54,15 @@
       }
 
       .swiper-pagination-bullet-active {
-        background-color: black;
+        background-color: #c81d25;
       }
 
-      &:hover {}
+      &:hover {
+      }
     }
 
     &:hover {
-      border: 1px solid #828282ff;
+      border: 1px solid #c81d25;
       transition: 0.4s ease-in-out;
       -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
       box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);

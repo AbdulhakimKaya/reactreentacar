@@ -8,7 +8,7 @@ interface ButtonProps {
     variant?: 'primary' | 'white' | 'white-outline' | 'black';
     className?: string;
     children: ReactNode;
-};
+}
 
 export default function Button({
                                    as = 'button',
@@ -29,7 +29,7 @@ export default function Button({
                 "px-4 h-8 text-sm": size === 'small',
                 "px-4 h-9": size === 'normal',
                 "px-4 text-[16px] h-[36px] w-full": size === 'large',
-                "bg-[#1d9bf0] hover:bg-[#1a8cd8] text-white": variant === 'primary',
+                "bg-[#c81d25] hover:bg-[#ff5a5f] text-white": variant === 'primary',
                 "bg-[#eff3f4] text-black": variant === 'white',
                 "border border-[#b4b4b4] text-[#333333ff] hover:bg-[#eff3f4] hover:text-black": variant === 'white-outline',
                 "bg-[#333333ff] text-white hover:bg-[#141414ff]": variant === 'black',
