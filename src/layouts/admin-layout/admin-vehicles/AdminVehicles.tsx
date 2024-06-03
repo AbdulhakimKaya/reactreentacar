@@ -1,48 +1,81 @@
 import React from 'react';
 import './AdminVehicles.scss'
 import classNames from "classnames";
-import {Space, Table, type TableProps, Tag} from "antd";
+import {Popconfirm, Space, Table, type TableProps, Tag} from "antd";
+import car from '../../../assets/images/xc90.avif'
+import Button from "../../../components/button/Button";
+import {Link, useNavigate} from "react-router-dom";
 
 
 interface DataType {
     key: string;
-    name: string;
-    age: number;
-    address: string;
+    image: string;
+    brand: string;
+    model: string;
+    gear: string;
+    color: string;
+    year: string;
+    fuel: string;
+    plate: string;
     tags: string[];
 }
 
 const columns: TableProps<DataType>['columns'] = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <a>{text}</a>,
+        title: 'Resim',
+        dataIndex: 'image',
+        key: 'image',
+        render: (image) => <img src={image} style={{width: 240}}/>,
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
+        title: 'Marka',
+        dataIndex: 'brand',
+        key: 'brand',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
+        title: 'Model',
+        dataIndex: 'model',
+        key: 'model',
     },
     {
-        title: 'Tags',
+        title: 'Vites',
+        dataIndex: 'gear',
+        key: 'gear',
+    },
+    {
+        title: 'Renk',
+        dataIndex: 'color',
+        key: 'color',
+    },
+    {
+        title: 'Yıl',
+        dataIndex: 'year',
+        key: 'year',
+    },
+    {
+        title: 'Yakıt',
+        dataIndex: 'fuel',
+        key: 'fuel',
+    },
+    {
+        title: 'Plaka',
+        dataIndex: 'plate',
+        key: 'plate',
+    },
+    {
+        title: 'Durum',
         key: 'tags',
         dataIndex: 'tags',
         render: (_, {tags}) => (
             <>
                 {tags.map((tag) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
+                    let color = tag.length > 5 ? 'red' : 'green';
                     if (tag === 'loser') {
                         color = 'volcano';
                     }
                     return (
                         <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
+                            {tag}
                         </Tag>
                     );
                 })}
@@ -50,12 +83,22 @@ const columns: TableProps<DataType>['columns'] = [
         ),
     },
     {
-        title: 'Action',
+        title: '',
         key: 'action',
         render: (_, record) => (
             <Space size="middle">
-                <a>Invite {record.name}</a>
-                <a>Delete</a>
+                <a>Düzenle </a>
+                <Popconfirm
+                    title="Aracın silinmesi"
+                    description="Aracı silmek istediğinizden emin misiniz?"
+                    // onConfirm={confirm}
+                    // onCancel={cancel}
+                    okText="Evet"
+                    cancelText="Vazgeç"
+                    placement="topRight"
+                >
+                    <a>Sil</a>
+                </Popconfirm>
             </Space>
         ),
     },
@@ -64,180 +107,30 @@ const columns: TableProps<DataType>['columns'] = [
 const data: DataType[] = [
     {
         key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        gear: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
     },
 ];
 
 const AdminVehicles = () => {
     const classes = classNames("db-admin-vehicles")
+    const navigate = useNavigate()
 
     return (
         <div className={classes}>
-            <div className="relative">
+            <div className="flex justify-end pb-5">
+                <Link to={"/admin/araclar/arac-ekle"}>
+                    <Button>Yeni Araç Ekle</Button>
+                </Link>
+            </div>
+            <div className="w-full">
                 <Table columns={columns} dataSource={data} scroll={{x: true}} pagination={false} size={"middle"}
                        sticky={{offsetHeader: -32}}/>
             </div>

@@ -22,13 +22,13 @@ code {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: white;
+    background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #bdbdbdff !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
 }
 
 /* Handle on hover */

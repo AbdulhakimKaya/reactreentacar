@@ -27,7 +27,8 @@ const AdminLayout = () => {
                 <Col flex={'auto'}>
                     <Container tag="main">
                         <div className="content-main">
-                            <div className="rounded-xl p-8 bg-white max-h-[calc(100vh-90px)] opacity-100 overflow-auto">
+                            <div
+                                className="rounded-xl p-8 bg-white max-h-[calc(100vh-90px)] opacity-100 overflow-auto">
                                 <Outlet/>
                             </div>
                         </div>

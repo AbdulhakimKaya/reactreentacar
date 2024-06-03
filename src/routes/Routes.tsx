@@ -11,6 +11,7 @@ import AdminLayout from "../layouts/admin-layout/AdminLayout";
 import ScrollToTop from "../helpers/ScrollToTop";
 import AdminHomePage from "../layouts/admin-layout/admin-home-page/AdminHomePage";
 import AdminVehicles from "../layouts/admin-layout/admin-vehicles/AdminVehicles";
+import AddVehicle from "../layouts/admin-layout/admin-vehicles/add-vehicle/AddVehicle";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -55,6 +56,10 @@ const Routes = () => {
                 {
                     path: "araclar",
                     element: <AdminVehicles/>
+                },
+                {
+                    path: "araclar/arac-ekle",
+                    element: <AddVehicle/>
                 },
                 {
                     path: "filtreler",

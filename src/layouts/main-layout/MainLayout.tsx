@@ -12,7 +12,7 @@ function MainLayout() {
                 <div>
                     <Toolbar/>
                 </div>
-                <main className="flex-1 max-w-[1280px] mx-auto">
+                <main className="flex-1 max-w-[1280px] mx-auto min-h-[calc(100vh-180px)]">
                     <Outlet/>
                 </main>
                 <div>

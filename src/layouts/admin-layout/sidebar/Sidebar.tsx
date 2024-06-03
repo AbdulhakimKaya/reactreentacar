@@ -12,8 +12,15 @@ interface SidebarProps {
     toggleCollapsed: () => void;
 }
 
+interface MenuItem {
+    key: string;
+    icon: React.ReactNode;
+    label: string;
+    url: string;
+}
+
 const Sidebar: React.FC<SidebarProps> = (props) => {
-    const items = SidebarMenuItems
+    const items: MenuItem[] = SidebarMenuItems
 
     const {collapsed, toggleCollapsed} = props
     const classes = classNames("db-sidebar")
@@ -22,11 +29,17 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
     const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
     useEffect(() => {
-        const currentMenuItem = items.find(item => item.url === pathname);
+        // Find the item with the longest URL prefix matching the current pathname
+        const currentMenuItem = items.reduce<MenuItem | null>((longestMatch, item) => {
+            return pathname.startsWith(item.url) && item.url.length > (longestMatch?.url.length || 0)
+                ? item
+                : longestMatch;
+        }, null);
+
         if (currentMenuItem) {
             setSelectedKeys([currentMenuItem.key.toString()]);
         }
-    }, [pathname]);
+    }, [pathname, items]);
 
     return (
         <div className={classes}>
