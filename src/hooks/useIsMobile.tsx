@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
-const useIsMobile = (initialWidth = 768) => {
+export const _md = 768;
+
+const useIsMobile = (width: number = _md) => {
     const [isMobile, setIsMobile] = useState(false);
-    const [mobileWidth, setMobileWidth] = useState(initialWidth);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= mobileWidth);
+            const body = document.querySelector('body');
+            if (body) {
+                setIsMobile(body.clientWidth <= width);
+            }
         };
-
         window.addEventListener('resize', handleResize);
-        handleResize(); // İlk renderda boyut kontrolü yapılıyor
-
+        handleResize();
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [mobileWidth]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return isMobile;
 };

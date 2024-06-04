@@ -28,6 +28,10 @@ function App() {
                             // headerBg: themeTokens.colorPrimaryBg,
                             // borderColor: themeTokens.colorPrimary,
                         },
+                        Switch: {
+                            colorPrimary: '#00b96b',
+                            colorPrimaryHover: '#00b96b'
+                        },
                     },
                 }}
             >

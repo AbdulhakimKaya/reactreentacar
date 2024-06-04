@@ -1,15 +1,8 @@
 .db-add-vehicle {
   &-back-button {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 500;
-    gap: 8px;
-    width: max-content;
-
     svg {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
     }
   }
 }

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import {Popconfirm, Space, Table, type TableProps, Tag} from "antd";
 import car from '../../../assets/images/xc90.avif'
 import Button from "../../../components/button/Button";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 interface DataType {
@@ -12,7 +12,7 @@ interface DataType {
     image: string;
     brand: string;
     model: string;
-    gear: string;
+    transmission: string;
     color: string;
     year: string;
     fuel: string;
@@ -39,8 +39,8 @@ const columns: TableProps<DataType>['columns'] = [
     },
     {
         title: 'Vites',
-        dataIndex: 'gear',
-        key: 'gear',
+        dataIndex: 'transmission',
+        key: 'transmission',
     },
     {
         title: 'Renk',
@@ -85,7 +85,7 @@ const columns: TableProps<DataType>['columns'] = [
     {
         title: '',
         key: 'action',
-        render: (_, record) => (
+        render: () => (
             <Space size="middle">
                 <a>Düzenle </a>
                 <Popconfirm
@@ -110,7 +110,31 @@ const data: DataType[] = [
         image: car,
         brand: "Volvo",
         model: "XC90",
-        gear: "Otomatik",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
         color: "Kristal Beyaz",
         year: "2024",
         fuel: "Elektrikli/Benzinli",
@@ -121,7 +145,6 @@ const data: DataType[] = [
 
 const AdminVehicles = () => {
     const classes = classNames("db-admin-vehicles")
-    const navigate = useNavigate()
 
     return (
         <div className={classes}>

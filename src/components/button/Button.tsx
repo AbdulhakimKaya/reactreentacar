@@ -30,7 +30,7 @@ export default function Button({
                 "px-4 h-8 text-sm": size === 'small',
                 "px-4 h-9": size === 'normal',
                 "px-4 text-[16px] h-[36px] w-full": size === 'large',
-                "bg-[#c81d25] text-white hover:bg-[#FFF1F0] hover:text-[#c81d25]": variant === 'primary',
+                "bg-[#FFF1F0] text-[#c81d25] border border-[#c81d25] hover:bg-[#c81d25] hover:text-white": variant === 'primary',
                 "bg-[#eff3f4] text-black": variant === 'white',
                 "border border-[#b4b4b4] text-[#333333ff] hover:bg-[#eff3f4] hover:text-black": variant === 'white-outline',
                 "bg-[#333333ff] text-white hover:bg-[#141414ff]": variant === 'black',

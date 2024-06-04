@@ -4,12 +4,10 @@ import Sidebar from "./sidebar/Sidebar";
 import classNames from "classnames";
 import {Col, Row} from "antd";
 import {Outlet} from "react-router-dom";
-import useIsMobile from "../../hooks/useIsMobile";
 import {Container} from "reactstrap";
 
 const AdminLayout = () => {
     const classes = classNames("db-admin-layout")
-    const isSmallScreen = useIsMobile(768)
 
     const [collapsed, setCollapsed] = useState(false);
 
@@ -18,15 +16,15 @@ const AdminLayout = () => {
     };
 
     return (
-        <div className={classes}>
+        <div className={`${classes} p-5 min-h-[calc(100vh - 20px);]:`}>
             <Row className={classes} wrap={false}>
                 {/* responsive tasarım için isSmallScreen ise 0 yapıp Sidebar'a Drawer eklenecek */}
-                <Col style={{width: isSmallScreen ? 320 : collapsed ? 120 : 320}}>
+                <Col style={{width: collapsed ? 120 : 320}}>
                     <Sidebar collapsed={collapsed} toggleCollapsed={toggleCollapsed}/>
                 </Col>
                 <Col flex={'auto'}>
                     <Container tag="main">
-                        <div className="content-main">
+                        <div className="content-main pt-12 overflow-auto rounded-lg bg-[#f7f7fa]">
                             <div
                                 className="rounded-xl p-8 bg-white max-h-[calc(100vh-90px)] opacity-100 overflow-auto">
                                 <Outlet/>

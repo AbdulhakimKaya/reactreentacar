@@ -36,15 +36,23 @@ code {
     background: #828282ff !important;
 }
 
+/* Selection background color and text color */
 ::selection {
     background-color: #000;
     color: #fff;
 }
 
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset !important;
-    box-shadow: 0 0 0 1000px white inset !important;
-    -webkit-text-fill-color: black !important;
+input {
+    &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset !important;
+        box-shadow: 0 0 0 1000px white inset !important;
+        -webkit-text-fill-color: black !important;
+    }
+
+    &::selection {
+        background-color: #FFF1F0;
+        color: #000;
+    }
 }
 
 img,
