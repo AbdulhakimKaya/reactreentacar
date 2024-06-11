@@ -9,6 +9,7 @@ function App() {
         colorPrimary: '#c81d25',
         colorLink: '#c81d25',
         colorPrimaryBg: '#FFF1F0',
+        white: '#fff',
         borderRadius: 8,
     };
 
@@ -23,6 +24,8 @@ function App() {
                             itemHoverBg: themeTokens.colorPrimaryBg,
                             itemMarginInline: 8,
                             itemMarginBlock: 8,
+                            subMenuItemBg: themeTokens.white,
+                            activeBarBorderWidth: 0,
                         },
                         Table: {
                             // headerBg: themeTokens.colorPrimaryBg,

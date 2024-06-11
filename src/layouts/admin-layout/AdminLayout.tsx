@@ -19,14 +19,14 @@ const AdminLayout = () => {
         <div className={`${classes} p-5 min-h-[calc(100vh - 20px);]:`}>
             <Row className={classes} wrap={false}>
                 {/* responsive tasarım için isSmallScreen ise 0 yapıp Sidebar'a Drawer eklenecek */}
-                <Col style={{width: collapsed ? 120 : 320}}>
+                <Col style={{minWidth: collapsed ? 100 : 320}}>
                     <Sidebar collapsed={collapsed} toggleCollapsed={toggleCollapsed}/>
                 </Col>
                 <Col flex={'auto'}>
                     <Container tag="main">
                         <div className="content-main pt-12 overflow-auto rounded-lg bg-[#f7f7fa]">
                             <div
-                                className="rounded-xl p-8 bg-white max-h-[calc(100vh-90px)] opacity-100 overflow-auto">
+                                className="rounded-xl p-8 bg-white h-[calc(100vh-90px)] overflow-auto">
                                 <Outlet/>
                             </div>
                         </div>

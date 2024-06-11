@@ -1,21 +1,35 @@
 import React from "react";
 import {
-    AppstoreOutlined,
+    AppstoreAddOutlined,
+    BgColorsOutlined,
     CarOutlined,
     ContactsOutlined,
     FileTextOutlined,
     FilterOutlined,
+    GlobalOutlined,
+    HomeOutlined,
     PicCenterOutlined,
     RollbackOutlined,
     TeamOutlined,
+    ToolOutlined,
     UserOutlined
 } from "@ant-design/icons";
+import {BsFillFuelPumpFill} from "react-icons/bs";
+import {TbManualGearbox} from "react-icons/tb";
 
 
-export const SidebarMenuItems = [
+export interface MenuItem {
+    key: string;
+    label: string;
+    url?: string;
+    icon?: JSX.Element;
+    children?: MenuItem[];
+}
+
+export const SidebarMenuItems: MenuItem[] = [
     {
         key: 'admin-anasayfa',
-        icon: <AppstoreOutlined/>,
+        icon: <HomeOutlined/>,
         label: 'Anasayfa',
         url: '/admin'
     },
@@ -44,22 +58,66 @@ export const SidebarMenuItems = [
         url: '/admin/hesabim'
     },
     {
-        key: 'admin-slaytlar',
-        icon: <PicCenterOutlined/>,
-        label: "Anasayfa Slayt'lar",
-        url: '/admin/slaytlar'
+        key: 'icerik-yonetimi',
+        icon: <AppstoreAddOutlined/>,
+        label: "İçerik Yönetimi",
+        children: [
+            {
+                key: 'admin-slaytlar',
+                icon: <PicCenterOutlined/>,
+                label: "Anasayfa Slayt'lar",
+                url: '/admin/icerik-yonetimi/slaytlar'
+            },
+            {
+                key: 'admin-hakkimizda',
+                icon: <FileTextOutlined/>,
+                label: 'Hakkımızda Sayfası',
+                url: '/admin/icerik-yonetimi/hakkimizda'
+            },
+            {
+                key: 'admin-iletisim',
+                icon: <ContactsOutlined/>,
+                label: 'İletişim Sayfası',
+                url: '/admin/icerik-yonetimi/iletisim'
+            },
+        ]
     },
     {
-        key: 'admin-hakkimizda',
-        icon: <FileTextOutlined/>,
-        label: 'Hakkımızda Sayfası İçeriği',
-        url: '/admin/hakkimizda'
-    },
-    {
-        key: 'admin-iletisim',
-        icon: <ContactsOutlined/>,
-        label: 'İletişim Sayfası İçeriği',
-        url: '/admin/iletisim'
+        key: 'araba-ozellikleri',
+        label: 'Araba Özellikleri',
+        icon: <ToolOutlined/>,
+        children: [
+            {
+                key: 'marka',
+                label: 'Marka',
+                icon: <GlobalOutlined/>,
+                url: '/admin/araba-ozellikleri/marka'
+            },
+            {
+                key: 'model',
+                label: 'Model',
+                icon: <AppstoreAddOutlined/>,
+                url: '/admin/araba-ozellikleri/model'
+            },
+            {
+                key: 'vites',
+                label: 'Vites Tipi',
+                icon: <div><TbManualGearbox/></div>,
+                url: '/admin/araba-ozellikleri/vites'
+            },
+            {
+                key: 'yakit',
+                label: 'Yakıt Tipi',
+                icon: <div><BsFillFuelPumpFill/></div>,
+                url: '/admin/araba-ozellikleri/yakit'
+            },
+            {
+                key: 'renk',
+                label: 'Renk',
+                icon: <BgColorsOutlined/>,
+                url: '/admin/araba-ozellikleri/renk'
+            },
+        ],
     },
     {
         key: 'geri-don',

@@ -4,8 +4,8 @@ import classNames from "classnames";
 
 interface ButtonProps {
     as?: any;
-    size?: 'small' | 'normal' | 'large';
-    variant?: 'primary' | 'white' | 'white-outline' | 'black';
+    size?: 'xSmall' | 'small' | 'normal' | 'large';
+    variant?: 'primary' | 'white' | 'white-outline' | 'black' | 'edit' | 'delete';
     className?: string;
     children: ReactNode;
     onClick?: MouseEventHandler<HTMLElement>;
@@ -27,6 +27,7 @@ export default function Button({
         className: classNames(
             "rounded-full flex items-center justify-center font-bold transition-colors", classes,
             {
+                "px-4 h-7 text-sm font-semibold": size === 'xSmall',
                 "px-4 h-8 text-sm": size === 'small',
                 "px-4 h-9": size === 'normal',
                 "px-4 text-[16px] h-[36px] w-full": size === 'large',
@@ -34,6 +35,8 @@ export default function Button({
                 "bg-[#eff3f4] text-black": variant === 'white',
                 "border border-[#b4b4b4] text-[#333333ff] hover:bg-[#eff3f4] hover:text-black": variant === 'white-outline',
                 "bg-[#333333ff] text-white hover:bg-[#141414ff]": variant === 'black',
+                "bg-[#fffacd] text-[#ffa500] border border-[#ffa500] hover:bg-[#ffa500] hover:text-white": variant === 'edit',
+                "bg-[#c81d25] text-white border border-[#c81d25]": variant === 'delete',
                 [className!]: className,
             }
         ),

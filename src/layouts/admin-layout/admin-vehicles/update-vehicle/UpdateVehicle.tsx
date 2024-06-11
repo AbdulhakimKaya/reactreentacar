@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddVehicle.scss'
+import './UpdateVehicle.scss'
 import classNames from "classnames";
 import {Link} from "react-router-dom";
 import {CheckOutlined, CloseOutlined, LeftCircleOutlined} from "@ant-design/icons";
@@ -30,7 +30,7 @@ const onChange = (checked: boolean) => {
     console.log(`switch to ${checked}`);
 };
 
-const AddVehicle = () => {
+const UpdateVehicle = () => {
     const classes = classNames("db-add-vehicle")
 
     return (
@@ -161,7 +161,7 @@ const AddVehicle = () => {
 
                     <Form.Item>
                         <Button>
-                            Kaydet
+                            Güncelle
                         </Button>
                     </Form.Item>
                 </Form>
@@ -170,4 +170,4 @@ const AddVehicle = () => {
     );
 };
 
-export default AddVehicle;
+export default UpdateVehicle;

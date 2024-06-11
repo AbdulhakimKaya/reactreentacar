@@ -5,6 +5,7 @@ import {Popconfirm, Space, Table, type TableProps, Tag} from "antd";
 import car from '../../../assets/images/xc90.avif'
 import Button from "../../../components/button/Button";
 import {Link} from "react-router-dom";
+import {DeleteOutlined} from "@ant-design/icons";
 
 
 interface DataType {
@@ -25,7 +26,7 @@ const columns: TableProps<DataType>['columns'] = [
         title: 'Resim',
         dataIndex: 'image',
         key: 'image',
-        render: (image) => <img src={image} style={{width: 240}}/>,
+        render: (image) => <img src={image} style={{width: 160}}/>,
     },
     {
         title: 'Marka',
@@ -66,6 +67,7 @@ const columns: TableProps<DataType>['columns'] = [
         title: 'Durum',
         key: 'tags',
         dataIndex: 'tags',
+        // ToDo: border-radius, padding ve color ayarlamaları yapılmalı
         render: (_, {tags}) => (
             <>
                 {tags.map((tag) => {
@@ -87,7 +89,8 @@ const columns: TableProps<DataType>['columns'] = [
         key: 'action',
         render: () => (
             <Space size="middle">
-                <a>Düzenle </a>
+                <Link to={"/admin/araclar/arac-duzenle"}><Button size={"xSmall"}
+                                                                 variant={"edit"}>Düzenle</Button></Link>
                 <Popconfirm
                     title="Aracın silinmesi"
                     description="Aracı silmek istediğinizden emin misiniz?"
@@ -97,7 +100,10 @@ const columns: TableProps<DataType>['columns'] = [
                     cancelText="Vazgeç"
                     placement="topRight"
                 >
-                    <a>Sil</a>
+                    <Button size={"xSmall"} variant={"delete"} className="gap-1.5">
+                        <DeleteOutlined/>
+                        Sil
+                    </Button>
                 </Popconfirm>
             </Space>
         ),
@@ -141,6 +147,114 @@ const data: DataType[] = [
         plate: '21 ASD 2024',
         tags: ['Müsait Değil'],
     },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
+    {
+        key: '1',
+        image: car,
+        brand: "Volvo",
+        model: "XC90",
+        transmission: "Otomatik",
+        color: "Kristal Beyaz",
+        year: "2024",
+        fuel: "Elektrikli/Benzinli",
+        plate: '21 ASD 2024',
+        tags: ['Müsait Değil'],
+    },
 ];
 
 const AdminVehicles = () => {
@@ -148,14 +262,14 @@ const AdminVehicles = () => {
 
     return (
         <div className={classes}>
-            <div className="flex justify-end pb-5">
-                <Link to={"/admin/araclar/arac-ekle"}>
-                    <Button>Yeni Araç Ekle</Button>
-                </Link>
-            </div>
             <div className="w-full">
+                <div className={`flex justify-end z-10`}>
+                    <Link to={"/admin/araclar/arac-ekle"}>
+                        <Button>Yeni Araç Ekle</Button>
+                    </Link>
+                </div>
                 <Table columns={columns} dataSource={data} scroll={{x: true}} pagination={false} size={"middle"}
-                       sticky={{offsetHeader: -32}}/>
+                       sticky={{offsetHeader: -32}} className="mt-8"/>
             </div>
         </div>
     );
