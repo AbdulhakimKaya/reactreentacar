@@ -2,14 +2,36 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Button from "../../../../components/button/Button";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
-import {Popconfirm} from "antd";
+import {notification, Popconfirm} from "antd";
 import Fuel from "./type";
 import {fetchDataDetail} from "../../../../hooks/getData";
+import {deleteData} from "../../../../hooks/deleteData";
 
 
 const Fuels = () => {
     const [fuels, setFuels] = useState<Fuel[]>([]);
     const endpoint = 'http://localhost:5039/api/Fuels/getall';
+
+    const confirm = async (id: string) => {
+        const endpointDelete = `http://localhost:5039/api/Fuels/delete/${id}`;
+        try {
+            if (id) {
+                const {isSuccess} = await deleteData(endpointDelete);
+                if (isSuccess) {
+                    setFuels(fuels.filter(fuel => fuel.id !== id));
+                }
+            }
+        } catch (errorInfo) {
+            console.error('Deletion failed:', errorInfo);
+        }
+    };
+
+    const cancel = () => {
+        notification.info({
+            message: 'İptal Edildi',
+            description: 'Silme işlemi iptal edildi.',
+        });
+    };
 
     useEffect(() => {
         const fetchFuels = async () => {
@@ -49,8 +71,8 @@ const Fuels = () => {
                             <Popconfirm
                                 title="Aracın silinmesi"
                                 description="Aracı silmek istediğinizden emin misiniz?"
-                                // onConfirm={confirm}
-                                // onCancel={cancel}
+                                onConfirm={() => confirm(item.id)}
+                                onCancel={cancel}
                                 okText="Evet"
                                 cancelText="Vazgeç"
                                 placement="topRight"

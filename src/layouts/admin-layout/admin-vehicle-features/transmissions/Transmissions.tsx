@@ -1,18 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import Button from "../../../../components/button/Button";
 import {Link} from "react-router-dom";
-import {Popconfirm} from "antd";
+import {notification, Popconfirm} from "antd";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {fetchDataDetail} from "../../../../hooks/getData";
 import Transmission from "./type";
+import {deleteData} from "../../../../hooks/deleteData";
 
 
 const Transmissions = () => {
     const [transmissions, setTransmissions] = useState<Transmission[]>([]);
     const endpoint = 'http://localhost:5039/api/Transmissions/getall';
 
+    const confirm = async (id: string) => {
+        const endpointDelete = `http://localhost:5039/api/Transmissions/delete/${id}`;
+        try {
+            if (id) {
+                const {isSuccess} = await deleteData(endpointDelete);
+                if (isSuccess) {
+                    setTransmissions(transmissions.filter(transmission => transmission.id !== id));
+                }
+            }
+        } catch (errorInfo) {
+            console.error('Deletion failed:', errorInfo);
+        }
+    };
+
+    const cancel = () => {
+        notification.info({
+            message: 'İptal Edildi',
+            description: 'Silme işlemi iptal edildi.',
+        });
+    };
+
     useEffect(() => {
-        const fetchBrands = async () => {
+        const fetchTransmissions = async () => {
             try {
                 const data = await fetchDataDetail(endpoint);
                 setTransmissions(data?.data); // Extract items array from data
@@ -22,7 +44,7 @@ const Transmissions = () => {
             }
         };
 
-        fetchBrands();
+        fetchTransmissions();
     }, []);
 
     return (
@@ -50,8 +72,8 @@ const Transmissions = () => {
                             <Popconfirm
                                 title="Aracın silinmesi"
                                 description="Aracı silmek istediğinizden emin misiniz?"
-                                // onConfirm={confirm}
-                                // onCancel={cancel}
+                                onConfirm={() => confirm(item.id)}
+                                onCancel={cancel}
                                 okText="Evet"
                                 cancelText="Vazgeç"
                                 placement="topRight"
