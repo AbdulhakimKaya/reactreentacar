@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import Button from "../../../../components/button/Button";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {Popconfirm} from "antd";
-import {Fuel} from "./type";
+import Fuel from "./type";
 import {fetchDataDetail} from "../../../../hooks/getData";
 
 
@@ -34,6 +34,7 @@ const Fuels = () => {
             {
                 fuels.map((item, index) => (
                     <div
+                        key={index}
                         className="flex justify-between items-center max-w-[100%] border border-[#bdbdbdff] px-4 py-2 rounded-lg mb-2 mt-8">
                         <div className="text-base font-semibold">
                             {item.name}

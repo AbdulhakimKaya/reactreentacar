@@ -1,22 +1,22 @@
 import React, {useEffect, useRef} from 'react';
-import '../../AdminVehicleFeatures.scss'
 import {Link, useNavigate} from "react-router-dom";
 import {LeftCircleOutlined} from "@ant-design/icons";
 import {Form, FormProps, Input, notification} from "antd";
 import Button from "../../../../../components/button/Button";
 import {postData} from "../../../../../hooks/postData";
-import Brand from "../type";
+import Transmission from "../type";
 
-interface BrandProps {
+
+interface TransmissionProps {
     id?: string,
-    brandData?: Brand
+    transmissionData?: Transmission
 }
 
-const BrandForm: React.FC<BrandProps> = (props) => {
-    const {id, brandData} = props
+const TransmissionForm: React.FC<TransmissionProps> = (props) => {
+    const {id, transmissionData} = props
     const isFormValidating = useRef(false);
     const [form] = Form.useForm();
-    const endpoint = `http://localhost:5039/api/Brands/`
+    const endpoint = `http://localhost:5039/api/Transmissions/`
     const navigate = useNavigate();
     console.log(id)
     const onFinish = async (values: any) => {
@@ -49,7 +49,7 @@ const BrandForm: React.FC<BrandProps> = (props) => {
                         message: 'Success',
                         description: 'İşlem başarılı.',
                     });
-                    navigate('/admin/araba-ozellikleri/marka');
+                    navigate('/admin/araba-ozellikleri/vites');
                 }
             }
         } catch (errorInfo) {
@@ -64,10 +64,10 @@ const BrandForm: React.FC<BrandProps> = (props) => {
         // Local Storage'dan veriyi al
         // Eğer veri varsa ve uygun bir şekilde çözümlenebiliyorsa, formu set et
         // initialValues'i local storage'dan alınan veriyle güncelle
-        if (brandData) {
+        if (transmissionData) {
             form.setFieldsValue({
                 id: id ?? '',
-                name: brandData.name
+                name: transmissionData.name
             });
         }
     };
@@ -85,16 +85,16 @@ const BrandForm: React.FC<BrandProps> = (props) => {
     return (
         <div>
             <div>
-                <Link to={"/admin/araba-ozellikleri/marka"}
+                <Link to={"/admin/araba-ozellikleri/vites"}
                       className="back-button flex items-center gap-2 w-max text-base font-semibold pb-8"
                 >
                     <LeftCircleOutlined/>
-                    Tüm Markalar
+                    Tüm Vites Tipleri
                 </Link>
             </div>
             <div>
                 <Form
-                    name={"brandForm"}
+                    name={"transmissionForm"}
                     form={form}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -110,7 +110,7 @@ const BrandForm: React.FC<BrandProps> = (props) => {
                         </Form.Item>
                     ) : null}
                     <Form.Item
-                        label={"Marka"}
+                        label={"Vites"}
                         name={"name"}
                         rules={[{required: true, message: 'Please input the required field!'}]}
                         labelAlign={"left"}
@@ -130,4 +130,4 @@ const BrandForm: React.FC<BrandProps> = (props) => {
     );
 };
 
-export default BrandForm;
+export default TransmissionForm;

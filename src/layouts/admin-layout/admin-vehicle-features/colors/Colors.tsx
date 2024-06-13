@@ -4,7 +4,7 @@ import Button from "../../../../components/button/Button";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {Popconfirm} from "antd";
 import {fetchDataDetail} from "../../../../hooks/getData";
-import {Color} from "./type";
+import Color from "./type";
 
 
 const Colors = () => {
@@ -34,6 +34,7 @@ const Colors = () => {
             {
                 colors.map((item, index) => (
                     <div
+                        key={index}
                         className="flex justify-between items-center max-w-[100%] border border-[#bdbdbdff] px-4 py-2 rounded-lg mb-2 mt-8">
                         <div className="text-base font-semibold">
                             {item.name}

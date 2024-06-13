@@ -1,24 +1,23 @@
 import React, {useEffect, useRef} from 'react';
-import '../../AdminVehicleFeatures.scss'
 import {Link, useNavigate} from "react-router-dom";
 import {LeftCircleOutlined} from "@ant-design/icons";
 import {Form, FormProps, Input, notification} from "antd";
 import Button from "../../../../../components/button/Button";
 import {postData} from "../../../../../hooks/postData";
-import Brand from "../type";
+import Color from "../type";
 
-interface BrandProps {
+
+interface ColorProps {
     id?: string,
-    brandData?: Brand
+    colorData?: Color
 }
 
-const BrandForm: React.FC<BrandProps> = (props) => {
-    const {id, brandData} = props
+const ColorForm: React.FC<ColorProps> = (props) => {
+    const {id, colorData} = props
     const isFormValidating = useRef(false);
     const [form] = Form.useForm();
-    const endpoint = `http://localhost:5039/api/Brands/`
+    const endpoint = `http://localhost:5039/api/Colors/`
     const navigate = useNavigate();
-    console.log(id)
     const onFinish = async (values: any) => {
         try {
             isFormValidating.current = true;
@@ -49,7 +48,7 @@ const BrandForm: React.FC<BrandProps> = (props) => {
                         message: 'Success',
                         description: 'İşlem başarılı.',
                     });
-                    navigate('/admin/araba-ozellikleri/marka');
+                    navigate('/admin/araba-ozellikleri/renk');
                 }
             }
         } catch (errorInfo) {
@@ -64,10 +63,10 @@ const BrandForm: React.FC<BrandProps> = (props) => {
         // Local Storage'dan veriyi al
         // Eğer veri varsa ve uygun bir şekilde çözümlenebiliyorsa, formu set et
         // initialValues'i local storage'dan alınan veriyle güncelle
-        if (brandData) {
+        if (colorData) {
             form.setFieldsValue({
                 id: id ?? '',
-                name: brandData.name
+                name: colorData.name
             });
         }
     };
@@ -81,20 +80,19 @@ const BrandForm: React.FC<BrandProps> = (props) => {
             fetchDataFromLocalStorage();
         }
     }, [id, form]);
-
     return (
         <div>
             <div>
-                <Link to={"/admin/araba-ozellikleri/marka"}
+                <Link to={"/admin/araba-ozellikleri/renk"}
                       className="back-button flex items-center gap-2 w-max text-base font-semibold pb-8"
                 >
                     <LeftCircleOutlined/>
-                    Tüm Markalar
+                    Tüm Renkler
                 </Link>
             </div>
             <div>
                 <Form
-                    name={"brandForm"}
+                    name={"colorForm"}
                     form={form}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
@@ -110,7 +108,7 @@ const BrandForm: React.FC<BrandProps> = (props) => {
                         </Form.Item>
                     ) : null}
                     <Form.Item
-                        label={"Marka"}
+                        label={"Renk"}
                         name={"name"}
                         rules={[{required: true, message: 'Please input the required field!'}]}
                         labelAlign={"left"}
@@ -130,4 +128,4 @@ const BrandForm: React.FC<BrandProps> = (props) => {
     );
 };
 
-export default BrandForm;
+export default ColorForm;

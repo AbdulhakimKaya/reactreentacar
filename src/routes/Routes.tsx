@@ -15,13 +15,13 @@ import AddVehicle from "../layouts/admin-layout/admin-vehicles/add-vehicle/AddVe
 import UpdateVehicle from "../layouts/admin-layout/admin-vehicles/update-vehicle/UpdateVehicle";
 import Brands from "../layouts/admin-layout/admin-vehicle-features/brands/Brands";
 import Colors from "../layouts/admin-layout/admin-vehicle-features/colors/Colors";
-import AddColor from "../layouts/admin-layout/admin-vehicle-features/colors/add-color/AddColor";
 import Fuels from "../layouts/admin-layout/admin-vehicle-features/fuels/Fuels";
-import AddFuel from "../layouts/admin-layout/admin-vehicle-features/fuels/add-fuel/AddFuel";
 import Transmissions from "../layouts/admin-layout/admin-vehicle-features/transmissions/Transmissions";
-import AddTransmission
-    from "../layouts/admin-layout/admin-vehicle-features/transmissions/add-transmission/AddTransmission";
 import BrandDetail from "../layouts/admin-layout/admin-vehicle-features/brands/brand-detail/BrandDetail";
+import TransmissionDetail
+    from "../layouts/admin-layout/admin-vehicle-features/transmissions/transmission-detail/TransmissionDetail";
+import FuelDetail from "../layouts/admin-layout/admin-vehicle-features/fuels/fuel-detail/FuelDetail";
+import ColorDetail from "../layouts/admin-layout/admin-vehicle-features/colors/color-detail/ColorDetail";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -144,11 +144,11 @@ const Routes = () => {
                 },
                 {
                     path: "araba-ozellikleri/vites/vites-ekle",
-                    element: <AddTransmission/>
+                    element: <TransmissionDetail/>
                 },
                 {
                     path: "araba-ozellikleri/vites/vites-duzenle:id",
-                    element: <AddTransmission/>
+                    element: <TransmissionDetail/>
                 },
 
                 // Fuel
@@ -158,11 +158,11 @@ const Routes = () => {
                 },
                 {
                     path: "araba-ozellikleri/yakit/yakit-ekle",
-                    element: <AddFuel/>
+                    element: <FuelDetail/>
                 },
                 {
                     path: "araba-ozellikleri/yakit/yakit-duzenle/:id",
-                    element: <AddFuel/>
+                    element: <FuelDetail/>
                 },
 
                 // Color
@@ -172,11 +172,11 @@ const Routes = () => {
                 },
                 {
                     path: "araba-ozellikleri/renk/renk-ekle",
-                    element: <AddColor/>
+                    element: <ColorDetail/>
                 },
                 {
                     path: "araba-ozellikleri/renk/renk-duzenle:id",
-                    element: <AddColor/>
+                    element: <ColorDetail/>
                 },
             ]
         }

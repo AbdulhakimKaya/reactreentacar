@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {Popconfirm} from "antd";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {fetchDataDetail} from "../../../../hooks/getData";
-import {Transmission} from "./type";
+import Transmission from "./type";
 
 
 const Transmissions = () => {
@@ -35,6 +35,7 @@ const Transmissions = () => {
             {
                 transmissions.map((item, index) => (
                     <div
+                        key={index}
                         className="flex justify-between items-center max-w-[100%] border border-[#bdbdbdff] px-4 py-2 rounded-lg mb-2 mt-8">
                         <div className="text-base font-semibold">
                             {item.name}
