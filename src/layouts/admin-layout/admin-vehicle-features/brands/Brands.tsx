@@ -4,22 +4,17 @@ import Button from "../../../../components/button/Button";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {Popconfirm} from "antd";
 import {fetchDataDetail} from "../../../../hooks/getData";
-
-// Define an interface for the brand object
-interface Brand {
-    id: string;
-    name: string;
-}
+import Brand from "./type";
 
 const Brands: React.FC = () => {
     const [brands, setBrands] = useState<Brand[]>([]);
-    const endpoint = 'http://localhost:5039/api/Brands?PageIndex=0&PageSize=15';
+    const endpoint = 'http://localhost:5039/api/Brands/getall';
 
     useEffect(() => {
         const fetchBrands = async () => {
             try {
                 const data = await fetchDataDetail(endpoint);
-                setBrands(data?.data.items); // Extract items array from data
+                setBrands(data?.data); // Extract items array from data
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }

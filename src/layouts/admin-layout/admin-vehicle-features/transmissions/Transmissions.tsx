@@ -1,24 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from "../../../../components/button/Button";
 import {Link} from "react-router-dom";
 import {Popconfirm} from "antd";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import {fetchDataDetail} from "../../../../hooks/getData";
+import {Transmission} from "./type";
 
-
-// id gibi bilgiler de eklenerek düzenle ve sil button'ları kullanılabilir
-const transmissions = [
-    {
-        name: "Manuel"
-    },
-    {
-        name: "Otomatik"
-    },
-    {
-        name: "Manuel/Otomatik"
-    },
-]
 
 const Transmissions = () => {
+    const [transmissions, setTransmissions] = useState<Transmission[]>([]);
+    const endpoint = 'http://localhost:5039/api/Transmissions/getall';
+
+    useEffect(() => {
+        const fetchBrands = async () => {
+            try {
+                const data = await fetchDataDetail(endpoint);
+                setTransmissions(data?.data); // Extract items array from data
+                console.log(data)
+            } catch (error) {
+                console.error('Error fetching data: ', error);
+            }
+        };
+
+        fetchBrands();
+    }, []);
+
     return (
         <div>
             <div className={`flex justify-end z-10`}>

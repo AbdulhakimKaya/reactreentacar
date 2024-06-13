@@ -1,24 +1,29 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Button from "../../../../components/button/Button";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {Popconfirm} from "antd";
+import {Fuel} from "./type";
+import {fetchDataDetail} from "../../../../hooks/getData";
 
-
-// id gibi bilgiler de eklenerek düzenle ve sil button'ları kullanılabilir
-const fuels = [
-    {
-        name: "Benzin"
-    },
-    {
-        name: "LPG"
-    },
-    {
-        name: "Elektrik"
-    },
-]
 
 const Fuels = () => {
+    const [fuels, setFuels] = useState<Fuel[]>([]);
+    const endpoint = 'http://localhost:5039/api/Fuels/getall';
+
+    useEffect(() => {
+        const fetchFuels = async () => {
+            try {
+                const data = await fetchDataDetail(endpoint);
+                setFuels(data?.data); // Extract items array from data
+            } catch (error) {
+                console.error('Error fetching data: ', error);
+            }
+        };
+
+        fetchFuels();
+    }, []);
+
     return (
         <div>
             <div className={`flex justify-end z-10`}>

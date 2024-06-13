@@ -3,11 +3,10 @@ import {
     AppstoreAddOutlined,
     BgColorsOutlined,
     CarOutlined,
-    ContactsOutlined,
-    FileTextOutlined,
     FilterOutlined,
     GlobalOutlined,
     HomeOutlined,
+    LogoutOutlined,
     PicCenterOutlined,
     RollbackOutlined,
     TeamOutlined,
@@ -68,18 +67,18 @@ export const SidebarMenuItems: MenuItem[] = [
                 label: "Anasayfa Slayt'lar",
                 url: '/admin/icerik-yonetimi/slaytlar'
             },
-            {
-                key: 'admin-hakkimizda',
-                icon: <FileTextOutlined/>,
-                label: 'Hakkımızda Sayfası',
-                url: '/admin/icerik-yonetimi/hakkimizda'
-            },
-            {
-                key: 'admin-iletisim',
-                icon: <ContactsOutlined/>,
-                label: 'İletişim Sayfası',
-                url: '/admin/icerik-yonetimi/iletisim'
-            },
+            // {
+            //     key: 'admin-hakkimizda',
+            //     icon: <FileTextOutlined/>,
+            //     label: 'Hakkımızda Sayfası',
+            //     url: '/admin/icerik-yonetimi/hakkimizda'
+            // },
+            // {
+            //     key: 'admin-iletisim',
+            //     icon: <ContactsOutlined/>,
+            //     label: 'İletişim Sayfası',
+            //     url: '/admin/icerik-yonetimi/iletisim'
+            // },
         ]
     },
     {
@@ -118,6 +117,12 @@ export const SidebarMenuItems: MenuItem[] = [
                 url: '/admin/araba-ozellikleri/renk'
             },
         ],
+    },
+    {
+        key: 'cikis-yap',
+        icon: <LogoutOutlined/>,
+        label: "Çıkış Yap",
+        url: '/'
     },
     {
         key: 'geri-don',

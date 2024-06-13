@@ -14,7 +14,6 @@ import AdminVehicles from "../layouts/admin-layout/admin-vehicles/AdminVehicles"
 import AddVehicle from "../layouts/admin-layout/admin-vehicles/add-vehicle/AddVehicle";
 import UpdateVehicle from "../layouts/admin-layout/admin-vehicles/update-vehicle/UpdateVehicle";
 import Brands from "../layouts/admin-layout/admin-vehicle-features/brands/Brands";
-import AddBrand from "../layouts/admin-layout/admin-vehicle-features/brands/add-brand/AddBrand";
 import Colors from "../layouts/admin-layout/admin-vehicle-features/colors/Colors";
 import AddColor from "../layouts/admin-layout/admin-vehicle-features/colors/add-color/AddColor";
 import Fuels from "../layouts/admin-layout/admin-vehicle-features/fuels/Fuels";
@@ -22,6 +21,7 @@ import AddFuel from "../layouts/admin-layout/admin-vehicle-features/fuels/add-fu
 import Transmissions from "../layouts/admin-layout/admin-vehicle-features/transmissions/Transmissions";
 import AddTransmission
     from "../layouts/admin-layout/admin-vehicle-features/transmissions/add-transmission/AddTransmission";
+import BrandDetail from "../layouts/admin-layout/admin-vehicle-features/brands/brand-detail/BrandDetail";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -64,7 +64,7 @@ const Routes = () => {
                     element: <AdminHomePage/>
                 },
 
-                // Vehicles
+                // Vehicle
                 {
                     path: "araclar",
                     element: <AdminVehicles/>
@@ -99,28 +99,31 @@ const Routes = () => {
                     path: "icerik-yonetimi/slaytlar",
                     element: "slaytlar"
                 },
-                {
-                    path: "icerik-yonetimi/hakkimizda",
-                    element: "hakkimizda"
-                },
-                {
-                    path: "icerik-yonetimi/iletisim",
-                    element: "iletisim"
-                },
+                // {
+                //     path: "icerik-yonetimi/hakkimizda",
+                //     element: "hakkimizda"
+                // },
+                // {
+                //     path: "icerik-yonetimi/iletisim",
+                //     element: "iletisim"
+                // },
 
                 // Vehicle Features
+                // Brand
                 {
                     path: "araba-ozellikleri/marka",
                     element: <Brands/>
                 },
                 {
                     path: "araba-ozellikleri/marka/marka-ekle",
-                    element: <AddBrand/>
+                    element: <BrandDetail/>
                 },
                 {
                     path: "araba-ozellikleri/marka/marka-duzenle/:id",
-                    element: <AddBrand/>
+                    element: <BrandDetail/>
                 },
+
+                // Model
                 {
                     path: "araba-ozellikleri/model",
                     element: "araba-ozellikleri model"
@@ -130,6 +133,12 @@ const Routes = () => {
                     element: "araba-ozellikleri model/model-ekle"
                 },
                 {
+                    path: "araba-ozellikleri/model",
+                    element: "araba-ozellikleri model/model-duzenle:id"
+                },
+
+                // Transmission
+                {
                     path: "araba-ozellikleri/vites",
                     element: <Transmissions/>
                 },
@@ -137,6 +146,12 @@ const Routes = () => {
                     path: "araba-ozellikleri/vites/vites-ekle",
                     element: <AddTransmission/>
                 },
+                {
+                    path: "araba-ozellikleri/vites/vites-duzenle:id",
+                    element: <AddTransmission/>
+                },
+
+                // Fuel
                 {
                     path: "araba-ozellikleri/yakit",
                     element: <Fuels/>
@@ -146,11 +161,21 @@ const Routes = () => {
                     element: <AddFuel/>
                 },
                 {
+                    path: "araba-ozellikleri/yakit/yakit-duzenle/:id",
+                    element: <AddFuel/>
+                },
+
+                // Color
+                {
                     path: "araba-ozellikleri/renk",
                     element: <Colors/>
                 },
                 {
                     path: "araba-ozellikleri/renk/renk-ekle",
+                    element: <AddColor/>
+                },
+                {
+                    path: "araba-ozellikleri/renk/renk-duzenle:id",
                     element: <AddColor/>
                 },
             ]

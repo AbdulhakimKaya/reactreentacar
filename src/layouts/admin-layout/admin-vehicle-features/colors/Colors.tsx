@@ -1,35 +1,29 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import Button from "../../../../components/button/Button";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 import {Popconfirm} from "antd";
+import {fetchDataDetail} from "../../../../hooks/getData";
+import {Color} from "./type";
 
-// id gibi bilgiler de eklenerek düzenle ve sil button'ları kullanılabilir
-const colors = [
-    {
-        name: "Kristal Beyaz"
-    },
-    {
-        name: "Beyaz"
-    },
-    {
-        name: "Siyah"
-    },
-    {
-        name: "Mavi"
-    },
-    {
-        name: "Kırmızı"
-    },
-    {
-        name: "Sarı"
-    },
-    {
-        name: "Yeşil"
-    },
-]
 
 const Colors = () => {
+    const [colors, setColors] = useState<Color[]>([]);
+    const endpoint = 'http://localhost:5039/api/Colors/getall';
+
+    useEffect(() => {
+        const fetchBrands = async () => {
+            try {
+                const data = await fetchDataDetail(endpoint);
+                setColors(data?.data); // Extract items array from data
+                console.log(data)
+            } catch (error) {
+                console.error('Error fetching data: ', error);
+            }
+        };
+
+        fetchBrands();
+    }, []);
     return (
         <div>
             <div className={`flex justify-end z-10`}>
