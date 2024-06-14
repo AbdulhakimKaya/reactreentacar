@@ -6,7 +6,11 @@ const AdminHomePage = () => {
     const classes = classNames("db-admin-home-page")
     return (
         <div className={classes}>
-            admin home page
+            hoşgeldiniz kullanıcı ismi <br/>
+            araç sayısı <br/>
+            müsait araç sayısı <br/>
+            müsait olmayan <br/>
+            rezerve olan <br/>
         </div>
     );
 };

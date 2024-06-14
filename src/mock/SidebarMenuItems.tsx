@@ -10,7 +10,6 @@ import {
     PicCenterOutlined,
     RollbackOutlined,
     TeamOutlined,
-    ToolOutlined,
     UserOutlined
 } from "@ant-design/icons";
 import {BsFillFuelPumpFill} from "react-icons/bs";
@@ -56,68 +55,68 @@ export const SidebarMenuItems: MenuItem[] = [
         label: 'Hesabım',
         url: '/admin/hesabim'
     },
+    // {
+    //     key: 'icerik-yonetimi',
+    //     icon: <AppstoreAddOutlined/>,
+    //     label: "İçerik Yönetimi",
+    //     children: [
     {
-        key: 'icerik-yonetimi',
+        key: 'admin-slaytlar',
+        icon: <PicCenterOutlined/>,
+        label: "Anasayfa Slayt'lar",
+        url: '/admin/icerik-yonetimi/slaytlar'
+    },
+    // {
+    //     key: 'admin-hakkimizda',
+    //     icon: <FileTextOutlined/>,
+    //     label: 'Hakkımızda Sayfası',
+    //     url: '/admin/icerik-yonetimi/hakkimizda'
+    // },
+    // {
+    //     key: 'admin-iletisim',
+    //     icon: <ContactsOutlined/>,
+    //     label: 'İletişim Sayfası',
+    //     url: '/admin/icerik-yonetimi/iletisim'
+    // },
+    // ]
+    // },
+    // {
+    // key: 'araba-ozellikleri',
+    // label: 'Araba Özellikleri',
+    // icon: <ToolOutlined/>,
+    // children: [
+    {
+        key: 'marka',
+        label: 'Marka',
+        icon: <GlobalOutlined/>,
+        url: '/admin/araba-ozellikleri/marka'
+    },
+    {
+        key: 'model',
+        label: 'Model',
         icon: <AppstoreAddOutlined/>,
-        label: "İçerik Yönetimi",
-        children: [
-            {
-                key: 'admin-slaytlar',
-                icon: <PicCenterOutlined/>,
-                label: "Anasayfa Slayt'lar",
-                url: '/admin/icerik-yonetimi/slaytlar'
-            },
-            // {
-            //     key: 'admin-hakkimizda',
-            //     icon: <FileTextOutlined/>,
-            //     label: 'Hakkımızda Sayfası',
-            //     url: '/admin/icerik-yonetimi/hakkimizda'
-            // },
-            // {
-            //     key: 'admin-iletisim',
-            //     icon: <ContactsOutlined/>,
-            //     label: 'İletişim Sayfası',
-            //     url: '/admin/icerik-yonetimi/iletisim'
-            // },
-        ]
+        url: '/admin/araba-ozellikleri/model'
     },
     {
-        key: 'araba-ozellikleri',
-        label: 'Araba Özellikleri',
-        icon: <ToolOutlined/>,
-        children: [
-            {
-                key: 'marka',
-                label: 'Marka',
-                icon: <GlobalOutlined/>,
-                url: '/admin/araba-ozellikleri/marka'
-            },
-            {
-                key: 'model',
-                label: 'Model',
-                icon: <AppstoreAddOutlined/>,
-                url: '/admin/araba-ozellikleri/model'
-            },
-            {
-                key: 'vites',
-                label: 'Vites Tipi',
-                icon: <div><TbManualGearbox/></div>,
-                url: '/admin/araba-ozellikleri/vites'
-            },
-            {
-                key: 'yakit',
-                label: 'Yakıt Tipi',
-                icon: <div><BsFillFuelPumpFill/></div>,
-                url: '/admin/araba-ozellikleri/yakit'
-            },
-            {
-                key: 'renk',
-                label: 'Renk',
-                icon: <BgColorsOutlined/>,
-                url: '/admin/araba-ozellikleri/renk'
-            },
-        ],
+        key: 'vites',
+        label: 'Vites Tipi',
+        icon: <div><TbManualGearbox/></div>,
+        url: '/admin/araba-ozellikleri/vites'
     },
+    {
+        key: 'yakit',
+        label: 'Yakıt Tipi',
+        icon: <div><BsFillFuelPumpFill/></div>,
+        url: '/admin/araba-ozellikleri/yakit'
+    },
+    {
+        key: 'renk',
+        label: 'Renk',
+        icon: <BgColorsOutlined/>,
+        url: '/admin/araba-ozellikleri/renk'
+    },
+    //     ],
+    // },
     {
         key: 'cikis-yap',
         icon: <LogoutOutlined/>,

@@ -35,6 +35,7 @@ function App() {
                             colorPrimary: '#00b96b',
                             colorPrimaryHover: '#00b96b'
                         },
+                        Collapse: {},
                     },
                 }}
             >

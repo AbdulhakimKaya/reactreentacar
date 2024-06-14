@@ -2,13 +2,9 @@ import React from 'react';
 import './Contact.scss'
 import classNames from "classnames";
 import {Col, Divider, Row, Timeline} from "antd";
-import {
-    EnvironmentOutlined,
-    MailOutlined,
-    PhoneOutlined,
-} from "@ant-design/icons";
+import {EnvironmentOutlined, MailOutlined, PhoneOutlined,} from "@ant-design/icons";
 import {Link} from "react-router-dom";
-import {Address, Mails, PhoneNumbers, SocialMedias, WorkingHours} from "../../../mock/ContactMockData";
+import {Address, ContactText, Mails, PhoneNumbers, SocialMedias, WorkingHours} from "../../../mock/ContactMockData";
 import Each from "../../../helpers/Each";
 
 const Contact = () => {
@@ -23,12 +19,10 @@ const Contact = () => {
         <div className={classes}>
             <div className="pb-10">
                 <Divider orientation={"left"} className="pb-2 divider-border-color">
-                    <p className="text-2xl">İletişim</p>
+                    <p className="text-2xl">{ContactText.title}</p>
                 </Divider>
                 <p className="text-lg">
-                    Rent a Car'a ulaşmak için aşağıdaki iletişim bilgilerini kullanabilirsiniz. Sorularınız, geri
-                    bildirimleriniz veya işbirliği talepleriniz için bizimle iletişime geçmekten çekinmeyin. Size en
-                    kısa sürede yanıt vereceğiz.
+                    {ContactText.description}
                 </p>
             </div>
             <div className="border border-[#c81d25] rounded-2xl py-10">

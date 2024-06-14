@@ -1,6 +1,11 @@
 import {ClockCircleOutlined, FacebookOutlined, InstagramOutlined, XOutlined} from "@ant-design/icons";
 import React from "react";
 
+export const ContactText = {
+    title: "İletişim",
+    description: "Rent a Car'a ulaşmak için aşağıdaki iletişim bilgilerini kullanabilirsiniz. Sorularınız, geri bildirimleriniz veya işbirliği talepleriniz için bizimle iletişime geçmekten çekinmeyin. Size en kısa sürede yanıt vereceğiz."
+}
+
 export const WorkingHours = [
     {
         label: <div className="text-base font-semibold -mt-0.5  pr-8">Haftaiçi</div>,
