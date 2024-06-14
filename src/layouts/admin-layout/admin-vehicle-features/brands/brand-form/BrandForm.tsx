@@ -1,92 +1,72 @@
 import React, {useEffect, useRef} from 'react';
-import '../../AdminVehicleFeatures.scss'
 import {Link, useNavigate} from "react-router-dom";
 import {LeftCircleOutlined} from "@ant-design/icons";
-import {Form, FormProps, Input, notification} from "antd";
+import {Form, Input, notification} from "antd";
 import Button from "../../../../../components/button/Button";
 import {postData} from "../../../../../hooks/postData";
 import Brand from "../type";
+import {putData} from "../../../../../hooks/putData";
 
 interface BrandProps {
-    id?: string,
-    brandData?: Brand
+    id?: string;
+    brandData?: Brand | null;
 }
 
-const BrandForm: React.FC<BrandProps> = (props) => {
-    const {id, brandData} = props
+const BrandForm: React.FC<BrandProps> = ({id, brandData}) => {
     const isFormValidating = useRef(false);
     const [form] = Form.useForm();
-    const endpoint = `http://localhost:5039/api/Brands/`
+    const endpoint = `http://localhost:5039/api/Brands/`;
     const navigate = useNavigate();
-    console.log(id)
+
+    useEffect(() => {
+        form.setFieldsValue({
+            id: id ?? '',
+            name: brandData ? brandData.name : '',
+        });
+    }, [brandData, form]);
+
     const onFinish = async (values: any) => {
         try {
             isFormValidating.current = true;
             await form.validateFields();
+            let data: any
+
             if (id) {
-                values.id = id;
-                const data = await postData({
+                data = await putData({
                     tempUrl: endpoint,
                     values: values,
                 });
-                if (data) {
-                    notification.success({
-                        message: 'Success',
-                        description: 'İşlem başarılı.',
-                    });
-                }
-                // const updatedData = await fetchDataDetail(1, undefined, endpointFetch);
-                // if (setCarouselData) {
-                //   setCarouselData(updatedData?.data);
-                // }
             } else {
-                const data = await postData({
+                data = await postData({
                     tempUrl: endpoint,
                     values: values,
                 });
-                if (data) {
-                    notification.success({
-                        message: 'Success',
-                        description: 'İşlem başarılı.',
-                    });
-                    navigate('/admin/araba-ozellikleri/marka');
-                }
+            }
+
+            if (data) {
+                notification.success({
+                    message: 'Success',
+                    description: 'İşlem başarılı.',
+                });
+                navigate('/admin/araba-ozellikleri/marka');
             }
         } catch (errorInfo) {
-            // Validation failed, handle the error if needed
             console.error('Validation failed:', errorInfo);
         } finally {
             isFormValidating.current = false;
         }
     };
 
-    const fetchDataFromLocalStorage = async () => {
-        // Local Storage'dan veriyi al
-        // Eğer veri varsa ve uygun bir şekilde çözümlenebiliyorsa, formu set et
-        // initialValues'i local storage'dan alınan veriyle güncelle
-        if (brandData) {
-            form.setFieldsValue({
-                id: id ?? '',
-                name: brandData.name
-            });
-        }
-    };
-
-    const onFinishFailed: FormProps['onFinishFailed'] = (errorInfo) => {
+    const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
-
-    useEffect(() => {
-        if (id && id.length > 0) {
-            fetchDataFromLocalStorage();
-        }
-    }, [id, form]);
 
     return (
         <div>
             <div>
-                <Link to={"/admin/araba-ozellikleri/marka"}
-                      className="back-button flex items-center gap-2 w-max text-base font-semibold pb-8"
+                <Link
+                    to={"/admin/araba-ozellikleri/marka"}
+                    className="back-button flex items-center gap-2 w-max text-base font-semibold pb-8"
                 >
                     <LeftCircleOutlined/>
                     Tüm Markalar
@@ -105,20 +85,20 @@ const BrandForm: React.FC<BrandProps> = (props) => {
                             label="Id"
                             labelAlign="left"
                             validateStatus="validating"
+                            hidden={true}
                         >
-                            <Input className="input-uzunluk id-ayar" disabled={true}/>
+                            <Input disabled={true}/>
                         </Form.Item>
                     ) : null}
                     <Form.Item
                         label={"Marka"}
                         name={"name"}
-                        rules={[{required: true, message: 'Please input the required field!'}]}
+                        rules={[{required: true, message: 'Lütfen Marka ismi alanını doldurunuz!'}]}
                         labelAlign={"left"}
                         wrapperCol={{span: 8}}
                     >
                         <Input/>
                     </Form.Item>
-
                     <Form.Item>
                         <Button htmlType="submit">
                             Kaydet

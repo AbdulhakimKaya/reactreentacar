@@ -1,86 +1,66 @@
 import React, {useEffect, useRef} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {LeftCircleOutlined} from "@ant-design/icons";
-import {Form, FormProps, Input, notification} from "antd";
+import {Form, Input, notification} from "antd";
 import Button from "../../../../../components/button/Button";
 import {postData} from "../../../../../hooks/postData";
 import Fuel from "../type";
+import {putData} from "../../../../../hooks/putData";
 
 
 interface FuelProps {
     id?: string,
-    fuelData?: Fuel
+    fuelData?: Fuel | null
 }
 
-const FuelForm: React.FC<FuelProps> = (props) => {
-    const {id, fuelData} = props
+const FuelForm: React.FC<FuelProps> = ({id, fuelData}) => {
     const isFormValidating = useRef(false);
     const [form] = Form.useForm();
     const endpoint = `http://localhost:5039/api/Fuels/`
     const navigate = useNavigate();
-    console.log(id)
+
+    useEffect(() => {
+        form.setFieldsValue({
+            id: id ?? '',
+            name: fuelData ? fuelData.name : '',
+        });
+    }, [fuelData, form]);
+
     const onFinish = async (values: any) => {
         try {
             isFormValidating.current = true;
             await form.validateFields();
+            let data: any
+
             if (id) {
-                values.id = id;
-                const data = await postData({
+                data = await putData({
                     tempUrl: endpoint,
                     values: values,
                 });
-                if (data) {
-                    notification.success({
-                        message: 'Success',
-                        description: 'İşlem başarılı.',
-                    });
-                }
-                // const updatedData = await fetchDataDetail(1, undefined, endpointFetch);
-                // if (setCarouselData) {
-                //   setCarouselData(updatedData?.data);
-                // }
             } else {
-                const data = await postData({
+                data = await postData({
                     tempUrl: endpoint,
                     values: values,
                 });
-                if (data) {
-                    notification.success({
-                        message: 'Success',
-                        description: 'İşlem başarılı.',
-                    });
-                    navigate('/admin/araba-ozellikleri/yakit');
-                }
+            }
+
+            if (data) {
+                notification.success({
+                    message: 'Success',
+                    description: 'İşlem başarılı.',
+                });
+                navigate('/admin/araba-ozellikleri/yakit');
             }
         } catch (errorInfo) {
-            // Validation failed, handle the error if needed
             console.error('Validation failed:', errorInfo);
         } finally {
             isFormValidating.current = false;
         }
     };
 
-    const fetchDataFromLocalStorage = async () => {
-        // Local Storage'dan veriyi al
-        // Eğer veri varsa ve uygun bir şekilde çözümlenebiliyorsa, formu set et
-        // initialValues'i local storage'dan alınan veriyle güncelle
-        if (fuelData) {
-            form.setFieldsValue({
-                id: id ?? '',
-                name: fuelData.name
-            });
-        }
-    };
-
-    const onFinishFailed: FormProps['onFinishFailed'] = (errorInfo) => {
+    const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
-
-    useEffect(() => {
-        if (id && id.length > 0) {
-            fetchDataFromLocalStorage();
-        }
-    }, [id, form]);
 
     return (
         <div>
@@ -105,6 +85,7 @@ const FuelForm: React.FC<FuelProps> = (props) => {
                             label="Id"
                             labelAlign="left"
                             validateStatus="validating"
+                            hidden={true}
                         >
                             <Input className="input-uzunluk id-ayar" disabled={true}/>
                         </Form.Item>

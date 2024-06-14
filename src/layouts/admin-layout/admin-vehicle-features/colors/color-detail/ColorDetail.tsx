@@ -1,51 +1,48 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 import {fetchDataDetail} from "../../../../../hooks/getData";
-import isNumeric from "antd/es/_util/isNumeric";
-import Color from "../type";
+import {LoadingOutlined} from "@ant-design/icons";
 import ColorForm from "../color-form/ColorForm";
+import Color from "../type";
 
-const ColorDetail = () => {
-    const {id} = useParams(); // useParams ile URL'den gelen id'yi aldık
-    const [isFetch, setIsFetch] = useState(true);
+const BrandDetail: React.FC = () => {
+    const {id} = useParams();
     const [loading, setLoading] = useState(true);
-    const [color, setColor] = useState<Color>();
-    const endpoint = `http://localhost:5039/api/Colors/${id}`
+    const [color, setColor] = useState<Color | null>(null);
+    const endpoint = `http://localhost:5039/api/Colors/${id}`;
+
     useEffect(() => {
         const getData = async () => {
             try {
                 const data = await fetchDataDetail(endpoint);
-                setIsFetch(false);
                 setColor(data?.data);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
         };
-        if (id === 'banner-ekle') {
+
+        if (id) {
+            getData();
+        } else {
             setLoading(false);
         }
-        if (isFetch && isNumeric(id)) {
-            getData();
-        }
-    }, [isFetch]);
+    }, [id, endpoint]);
 
     return (
         <>
-            {(!id || (id && loading)) && (
-                <ColorForm
-                />
-            )}{' '}
-            {/* Boş form */}
-            {id && !loading && (
+            {loading ? (
+                <div>
+                    <LoadingOutlined/>
+                </div>
+            ) : (
                 <ColorForm
                     id={id}
                     colorData={color}
                 />
-            )}{' '}
-            {/* Asıl form */}
+            )}
         </>
     );
 };
 
-export default ColorDetail;
+export default BrandDetail;

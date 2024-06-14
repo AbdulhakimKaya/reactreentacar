@@ -134,7 +134,7 @@ const Routes = () => {
                 },
                 {
                     path: "araba-ozellikleri/model",
-                    element: "araba-ozellikleri model/model-duzenle:id"
+                    element: "araba-ozellikleri model/model-duzenle/:id"
                 },
 
                 // Transmission
@@ -147,7 +147,7 @@ const Routes = () => {
                     element: <TransmissionDetail/>
                 },
                 {
-                    path: "araba-ozellikleri/vites/vites-duzenle:id",
+                    path: "araba-ozellikleri/vites/vites-duzenle/:id",
                     element: <TransmissionDetail/>
                 },
 
@@ -175,7 +175,7 @@ const Routes = () => {
                     element: <ColorDetail/>
                 },
                 {
-                    path: "araba-ozellikleri/renk/renk-duzenle:id",
+                    path: "araba-ozellikleri/renk/renk-duzenle/:id",
                     element: <ColorDetail/>
                 },
             ]

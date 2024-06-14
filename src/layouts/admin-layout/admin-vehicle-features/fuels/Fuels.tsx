@@ -57,12 +57,16 @@ const Fuels = () => {
                 fuels.map((item, index) => (
                     <div
                         key={index}
-                        className="flex justify-between items-center max-w-[100%] border border-[#bdbdbdff] px-4 py-2 rounded-lg mb-2 mt-8">
+                        className="flex justify-between items-center max-w-[100%] border border-[#bdbdbdff] px-4 py-2 rounded-lg mb-2 mt-8"
+                    >
+                        <div className="text-base font-semibold" hidden={true}>
+                            {item.id}
+                        </div>
                         <div className="text-base font-semibold">
                             {item.name}
                         </div>
                         <div className="flex gap-4">
-                            <Link to={"/admin/araba-ozellikleri/yakit/yakit-ekle"}>
+                            <Link to={`/admin/araba-ozellikleri/yakit/yakit-duzenle/${item.id}`}>
                                 <Button size={"xSmall"} variant={"edit"} className="gap-1.5">
                                     <EditOutlined/>
                                     Düzenle
