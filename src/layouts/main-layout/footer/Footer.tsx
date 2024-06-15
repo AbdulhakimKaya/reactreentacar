@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.scss'
-import logo from "../../../assets/images/RentACarLogo.jpg";
+import logo from "../../../assets/images/RentACarLogo.png";
 import {Link} from "react-router-dom";
 import {
     EnvironmentOutlined,
@@ -23,16 +23,10 @@ function Footer() {
                         <Link to="/">
                             <img
                                 src={logo}
-                                className="w-[100px]"
+                                className="w-[150px]"
                                 alt="DerinBilgiSistemleriLogo"
                             />
                         </Link>
-                        <div>
-                            Rent a Car
-                        </div>
-                        <div>
-                            En iyi araç kiralama deneyimi için buradayız.
-                        </div>
                     </div>
                     <div className="flex flex-col gap-y-5">
                         <Link to={"/"}>Anasayfa</Link>

@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import logo from '../../../assets/images/RentACarLogo.jpg'
+import logo from '../../../assets/images/RentACarLogo.png'
 import useIsMobile from "../../../hooks/useIsMobile";
 import {Link, useLocation} from "react-router-dom";
-import {Button, ConfigProvider, Drawer, Flex, Menu, MenuProps} from "antd";
+import {Button, ConfigProvider, Drawer, Flex, Menu} from "antd";
 import classNames from "classnames";
 import {IoMenuSharp} from "react-icons/io5";
 import {ToolbarMenuItems} from "../../../mock/ToolbarMenuItems";
-
 
 
 function Toolbar() {
@@ -15,7 +14,7 @@ function Toolbar() {
 
     const isSmallScreen = useIsMobile(768);
     const [drawerVisible, setDrawerVisible] = useState(false);
-    const { pathname } = useLocation();
+    const {pathname} = useLocation();
     const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
 
     useEffect(() => {
@@ -36,13 +35,13 @@ function Toolbar() {
     return (
         <div className={classes}>
             {!isSmallScreen ? (
-                <div className="flex justify-between max-w-[1280px] mx-auto pt-5 pb-10">
+                <div className="flex justify-between max-w-[1280px] mx-auto">
                     <div className="flex items-center">
                         <Link to="/">
                             <img
                                 src={logo}
-                                className="w-[120px]"
-                                alt="DerinBilgiSistemleriLogo"
+                                className="w-[190px] h-auto"
+                                alt="RentACarLogo"
                             />
                         </Link>
                     </div>
@@ -105,7 +104,8 @@ function Toolbar() {
                             {menuItems.map((item) =>
                                 (
                                     <Menu.Item key={item.key}>
-                                        <Link className="menu-link" to={item.url} onClick={() => setDrawerVisible(false)}>
+                                        <Link className="menu-link" to={item.url}
+                                              onClick={() => setDrawerVisible(false)}>
                                             {item.label}
                                         </Link>
                                     </Menu.Item>

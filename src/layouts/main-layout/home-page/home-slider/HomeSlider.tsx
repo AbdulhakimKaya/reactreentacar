@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 // Import Swiper React components
 import {Swiper, SwiperSlide} from 'swiper/react';
-import {Pagination, Navigation, Scrollbar, A11y, Autoplay} from "swiper/modules";
+import {A11y, Autoplay, Navigation, Pagination, Scrollbar} from "swiper/modules";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -28,10 +28,10 @@ const HomeSlider = () => {
 
     return (
         <div className={classes}>
-            <div className="home-slider pt-4">
+            <div className="home-slider">
                 <Swiper
                     modules={[Pagination, Navigation, Scrollbar, A11y, Autoplay]}
-                    autoplay={{ delay: 7000, disableOnInteraction: false }}
+                    autoplay={{delay: 7000, disableOnInteraction: false}}
                     speed={600}
                     loop={true}
                     spaceBetween={16}

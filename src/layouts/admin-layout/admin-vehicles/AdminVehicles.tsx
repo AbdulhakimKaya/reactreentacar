@@ -87,6 +87,7 @@ const columns: TableProps<DataType>['columns'] = [
     {
         title: '',
         key: 'action',
+        width: 200,
         render: () => (
             <Space size="middle">
                 <Link to={"/admin/araclar/arac-duzenle"}><Button size={"xSmall"}

@@ -9,7 +9,6 @@ import About from "../layouts/main-layout/about/About";
 import Contact from "../layouts/main-layout/contact/Contact";
 import AdminLayout from "../layouts/admin-layout/AdminLayout";
 import ScrollToTop from "../helpers/ScrollToTop";
-import AdminHomePage from "../layouts/admin-layout/admin-home-page/AdminHomePage";
 import AdminVehicles from "../layouts/admin-layout/admin-vehicles/AdminVehicles";
 import AddVehicle from "../layouts/admin-layout/admin-vehicles/add-vehicle/AddVehicle";
 import UpdateVehicle from "../layouts/admin-layout/admin-vehicles/update-vehicle/UpdateVehicle";
@@ -22,6 +21,8 @@ import TransmissionDetail
     from "../layouts/admin-layout/admin-vehicle-features/transmissions/transmission-detail/TransmissionDetail";
 import FuelDetail from "../layouts/admin-layout/admin-vehicle-features/fuels/fuel-detail/FuelDetail";
 import ColorDetail from "../layouts/admin-layout/admin-vehicle-features/colors/color-detail/ColorDetail";
+import Models from "../layouts/admin-layout/admin-vehicle-features/models/Models";
+import Deneme from "../layouts/admin-layout/admin-vehicle-features/deneme/Deneme";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -61,7 +62,8 @@ const Routes = () => {
             children: [
                 {
                     index: true,
-                    element: <AdminHomePage/>
+                    element: <Deneme/>
+                    // element: <AdminHomePage/>
                 },
 
                 // Vehicle
@@ -126,7 +128,7 @@ const Routes = () => {
                 // Model
                 {
                     path: "araba-ozellikleri/model",
-                    element: "araba-ozellikleri model"
+                    element: <Models/>
                 },
                 {
                     path: "araba-ozellikleri/model",
