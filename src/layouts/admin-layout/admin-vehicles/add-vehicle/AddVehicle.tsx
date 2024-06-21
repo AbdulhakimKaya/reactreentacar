@@ -2,8 +2,8 @@ import React from 'react';
 import './AddVehicle.scss'
 import classNames from "classnames";
 import {Link} from "react-router-dom";
-import {CheckOutlined, CloseOutlined, LeftCircleOutlined} from "@ant-design/icons";
-import {Col, Form, FormProps, Input, Row, Switch} from "antd";
+import {CheckOutlined, CloseOutlined, LeftCircleOutlined, UploadOutlined} from "@ant-design/icons";
+import {Col, Form, FormProps, Input, Row, Switch, Upload} from "antd";
 import Button from "../../../../components/button/Button";
 
 
@@ -156,6 +156,21 @@ const AddVehicle = () => {
                                     onChange={onChange}
                                 />
                             </Form.Item>
+                        </Col>
+                    </Row>
+
+                    <Row gutter={48} className="pb-8">
+                        <Col md={24} lg={12}>
+                            <Upload>
+                                <Button className="flex gap-2">
+                                    <div>
+                                        <UploadOutlined/>
+                                    </div>
+                                    <div>
+                                        Araç resimlerini yüklemek için tıkla
+                                    </div>
+                                </Button>
+                            </Upload>
                         </Col>
                     </Row>
 
