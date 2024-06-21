@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 
 interface BadgeProps {
-    isAvailable: boolean,
+    isAvailable: number,
 }
 
 const Badge: React.FC<BadgeProps> = (props) => {
@@ -16,15 +16,15 @@ const Badge: React.FC<BadgeProps> = (props) => {
                     classNames(
                         "absolute -top-4 h-6 flex items-center left-4 px-6 text-sm text-gray-50 rounded-full z-10",
                         {
-                            "bg-[#c81d25]": !isAvailable,
-                            "bg-[#00ba7c]": isAvailable,
+                            "bg-[#c81d25]": isAvailable === 0,
+                            "bg-[#00ba7c]": isAvailable === 1,
                         }
                     )
                 }
             >
                 <span className="font-semibold">
                     {
-                        isAvailable ? "Müsait" : !isAvailable ? "Müsait Değil" : ""
+                        isAvailable === 1 ? "Müsait" : isAvailable === 0 ? "Müsait Değil" : ""
                     }
                 </span>
             </div>

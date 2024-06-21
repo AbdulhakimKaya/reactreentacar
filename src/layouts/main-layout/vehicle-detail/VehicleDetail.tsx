@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './VehicleDetail.scss'
+import Vehicle from "../../admin-layout/admin-vehicles/type";
+import {fetchDataDetail} from "../../../hooks/getData";
+import {useParams} from "react-router-dom";
 
 // Import Swiper
 import {Swiper, SwiperSlide} from 'swiper/react';
-import {Navigation, Thumbs, FreeMode} from 'swiper/modules';
+import {FreeMode, Navigation, Thumbs} from 'swiper/modules';
 import {Swiper as SwiperType} from 'swiper';
 import {Col, Descriptions, Row} from "antd";
 
@@ -15,18 +18,8 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/bundle';
 import classNames from 'classnames';
 
-// Images
-import car from "../../../assets/images/xc90.avif";
-import car2 from "../../../assets/images/xc90-2.avif";
-import car3 from "../../../assets/images/xc90-3.avif";
-import car4 from "../../../assets/images/xc90-4.avif";
-import car5 from "../../../assets/images/xc90-5.avif";
-import car6 from "../../../assets/images/xc90-6.avif";
-import {VehicleDetailMockData} from "../../../mock/vehicleDetailMockData";
-
 
 const VehicleDetail = () => {
-    const items = VehicleDetailMockData
     const classes = classNames('vehicle-detail');
     const [activeThumb, setActiveThumb] = useState<SwiperType>();
 
@@ -34,41 +27,92 @@ const VehicleDetail = () => {
         setActiveThumb(swiper);
     };
 
-    //ToDo: dinamik olarak her aracın kendi image'leri yüklenecek
-    const cars = [car, car2, car3, car4, car5, car6]
+
+    const {id} = useParams();
+    const endpoint = `http://localhost:5039/api/Cars/${id}`;
+    const [vehicle, setVehicle] = useState<Vehicle>();
+
+    const vehicleDetail = [
+        {
+            key: '1',
+            label: 'Marka',
+            children: vehicle?.brandName,
+        },
+        {
+            key: '2',
+            label: 'Model',
+            children: vehicle?.modelName,
+        },
+        {
+            key: '3',
+            label: 'Renk',
+            children: vehicle?.colorName,
+        },
+        {
+            key: '4',
+            label: 'Vites',
+            children: vehicle?.transmissionName,
+        },
+        {
+            key: '5',
+            label: 'Yıl',
+            children: vehicle?.modelYear,
+        },
+        {
+            key: '6',
+            label: 'Yakıt',
+            children: vehicle?.fuelName,
+        },
+        {
+            key: '7',
+            label: 'Plaka',
+            children: vehicle?.plate,
+        },
+    ]
+
+    useEffect(() => {
+        const fetchCars = async () => {
+            try {
+                const data = await fetchDataDetail(endpoint);
+                setVehicle(data?.data);
+            } catch (error) {
+                console.error('Error fetching data: ', error);
+            }
+        };
+
+        fetchCars();
+    }, []);
 
     return (
         <div className={classes}>
             <Row gutter={40}>
                 <Col span={15} flex={"auto"}>
                     <div className="product-images-swiper">
-                        <Swiper
-                            loop={true}
-                            spaceBetween={20}
-                            navigation={true}
-                            modules={[Navigation, Thumbs, FreeMode]}
+                        {vehicle?.imagesRoot && (
+                            <Swiper
+                                loop={true}
+                                spaceBetween={20}
+                                navigation={true}
+                                modules={[Navigation, Thumbs, FreeMode]}
 
-                            thumbs={{swiper: activeThumb}}
-                            className="product-images-slider"
-                            style={{
-                                "--swiper-navigation-size": "16px",
-                            }}
-                        >
-                            {cars?.map((car, index) => (
-                                <SwiperSlide key={index}>
-                                    <img
-                                        src={car || process.env.NX_NO_IMAGE_URL}
-                                        alt="product images"
-                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                            const target = e.target as HTMLImageElement;
-                                            target.src = process.env.NX_NO_IMAGE_URL!;
-                                        }}
-                                    />
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+                                thumbs={{swiper: activeThumb}}
+                                className="product-images-slider"
+                                style={{
+                                    "--swiper-navigation-size": "16px",
+                                }}
+                            >
+                                {vehicle?.imagesRoot?.map((car, index) => (
+                                    <SwiperSlide key={index}>
+                                        <img
+                                            src={`http://localhost:5039/images/${car}`}
+                                            alt="product images"
+                                        />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        )}
 
-                        {cars.length > 1 ? (
+                        {vehicle?.imagesRoot && (
                             <div className="thumbs">
                                 <Swiper
                                     onSwiper={handleSwiper}
@@ -78,28 +122,22 @@ const VehicleDetail = () => {
                                     slidesPerView={3}
                                     className="product-images-slider-thumbs"
                                 >
-                                    {cars?.map((car, index) => (
+                                    {vehicle?.imagesRoot?.map((car, index) => (
                                         <SwiperSlide key={index}>
-                                            <div className="product-images-slider-thumbs-wrapper">
-                                                <img
-                                                    src={car || process.env.NX_NO_IMAGE_URL}
-                                                    alt="product images"
-                                                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                                        const target = e.target as HTMLImageElement;
-                                                        target.src = process.env.NX_NO_IMAGE_URL!;
-                                                    }}
-                                                />
-                                            </div>
+                                            <img
+                                                src={`http://localhost:5039/images/${car}`}
+                                                alt="product images"
+                                            />
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
                             </div>
-                        ) : null}
+                        )}
                     </div>
                 </Col>
                 <Col span={9}>
                     <div className="vehicle-info">
-                        <Descriptions title="Araç Bilgileri" bordered size={"middle"} column={1} items={items}/>
+                        <Descriptions title="Araç Bilgileri" bordered size={"middle"} column={1} items={vehicleDetail}/>
                     </div>
                 </Col>
             </Row>

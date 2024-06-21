@@ -3,7 +3,6 @@ import {
     AppstoreAddOutlined,
     BgColorsOutlined,
     CarOutlined,
-    FilterOutlined,
     GlobalOutlined,
     HomeOutlined,
     LogoutOutlined,
@@ -37,12 +36,12 @@ export const SidebarMenuItems: MenuItem[] = [
         label: 'Araçlar',
         url: '/admin/araclar'
     },
-    {
-        key: 'admin-filtreler',
-        icon: <FilterOutlined/>,
-        label: 'Filtreler',
-        url: '/admin/filtreler'
-    },
+    // {
+    //     key: 'admin-filtreler',
+    //     icon: <FilterOutlined/>,
+    //     label: 'Filtreler',
+    //     url: '/admin/filtreler'
+    // },
     {
         key: 'admin-kullanicilar',
         icon: <TeamOutlined/>,

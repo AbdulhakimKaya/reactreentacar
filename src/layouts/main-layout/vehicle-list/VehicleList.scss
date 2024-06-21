@@ -1,0 +1,93 @@
+.vehicle-list {
+  .vehicle-list-item {
+    .product-card {
+      .swiper-button-prev,
+      .swiper-button-next,
+      .swiper-pagination,
+      .swiper-button-disabled {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .product-images {
+        position: relative;
+
+        img {
+          -webkit-user-select: none; /* Safari */
+          -ms-user-select: none; /* IE 10 and IE 11 */
+          user-select: none; /* Standard syntax */
+          transition: transform 1.5s cubic-bezier(0, 0, 0.2, 1), -webkit-transform 1.5s cubic-bezier(0, 0, 0.2, 1);
+          border-radius: 16px;
+          width: auto;
+          margin: auto;
+          height: 250px;
+        }
+
+        .swiper-button-prev {
+          width: 28px;
+          height: 28px;
+          left: 10px;
+          top: 50%;
+          transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
+          background-color: white;
+          color: #c81d25;
+          border-radius: 50%;
+
+          &:hover {
+            background-color: #c81d25;
+            color: white;
+          }
+        }
+
+        .swiper-button-next {
+          width: 28px;
+          height: 28px;
+          right: 10px;
+          transition: 300ms background-color, 300ms color, 200ms visibility, 200ms opacity;
+          background-color: white;
+          color: #c81d25;
+          border-radius: 50%;
+
+          &:hover {
+            background-color: #c81d25;
+            color: white;
+          }
+        }
+
+        .swiper-pagination-bullet {
+          background-color: #cacacaff;
+          opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
+          background-color: #c81d25;
+        }
+      }
+
+      &:hover {
+        border: 1px solid #c81d25;
+        transition: 0.4s ease-in-out;
+        -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+
+        .product-images {
+          img {
+            transform: scale3d(1.06, 1.06, 1.06) translateZ(0);
+          }
+
+          .swiper-button-prev, .swiper-button-next {
+            opacity: 1;
+          }
+
+          .swiper-pagination {
+            opacity: 1;
+          }
+
+          .swiper-button-disabled {
+            opacity: 0.3 !important;
+          }
+        }
+      }
+    }
+  }
+}

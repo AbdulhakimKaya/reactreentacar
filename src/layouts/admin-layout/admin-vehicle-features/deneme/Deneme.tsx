@@ -25,16 +25,29 @@ const Deneme = () => {
                 models.map((item, index) => (
                     <div key={index}>
                         <div>{item.brandName}</div>
+                        <div>{item.carState}</div>
+                        {/*{*/}
+                        {/*    item.imagesRoot.map((i, ind) => (*/}
+                        {/*        <div key={ind}>*/}
+                        {/*            <img*/}
+                        {/*                src={`http://localhost:5039/images/${i}`}*/}
+                        {/*                alt="Car Image"*/}
+                        {/*            />*/}
+                        {/*        </div>*/}
+                        {/*    ))*/}
+                        {/*}*/}
+
                         {
-                            item.imagesRoot.map((i, ind) => (
-                                <div key={ind}>
+                            item.imagesRoot.length > 0 && (
+                                <div>
                                     <img
-                                        src={`http://localhost:5039/images/${i}`}
+                                        src={`http://localhost:5039/images/${item.imagesRoot[0]}`}
                                         alt="Car Image"
                                     />
                                 </div>
-                            ))
+                            )
                         }
+
                         <div>{item.colorName}</div>
                     </div>
                 ))

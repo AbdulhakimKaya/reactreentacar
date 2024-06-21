@@ -81,10 +81,10 @@ const Routes = () => {
                 },
 
                 // Filters
-                {
-                    path: "filtreler",
-                    element: "filtreler"
-                },
+                // {
+                //     path: "filtreler",
+                //     element: "filtreler"
+                // },
 
                 // User Management
                 {
