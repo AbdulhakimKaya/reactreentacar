@@ -34,10 +34,10 @@ const Models = () => {
             title: '',
             key: 'action',
             width: 200,
-            render: () => (
+            render: (record) => (
                 <Row gutter={8}>
                     <Col>
-                        <Link to={"/admin/araclar/arac-duzenle"}>
+                        <Link to={`/admin/araba-ozellikleri/model/model-duzenle/${record.id}`}>
                             <Button size={"xSmall"} variant={"edit"}>Düzenle</Button>
                         </Link>
                     </Col>
@@ -45,8 +45,8 @@ const Models = () => {
                         <Popconfirm
                             title="Aracın silinmesi"
                             description="Aracı silmek istediğinizden emin misiniz?"
-                            // onConfirm={() => confirm("id")}
-                            // onCancel={cancel}
+                            onConfirm={() => confirm(record.id)}
+                            onCancel={cancel}
                             okText="Evet"
                             cancelText="Vazgeç"
                             placement="topRight"
@@ -66,7 +66,7 @@ const Models = () => {
     const endpoint = 'http://localhost:5039/api/Models/getall';
 
     const confirm = async (id: string) => {
-        const endpointDelete = `http://localhost:5039/api/Brands/delete/${id}`;
+        const endpointDelete = `http://localhost:5039/api/Models/delete/${id}`;
         try {
             if (id) {
                 const {isSuccess} = await deleteData(endpointDelete);
@@ -102,7 +102,7 @@ const Models = () => {
     return (
         <div>
             <div className="flex justify-end z-10">
-                <Link to="/admin/araba-ozellikleri/marka/marka-ekle">
+                <Link to="/admin/araba-ozellikleri/model/model-ekle">
                     <Button>Model Ekle</Button>
                 </Link>
             </div>

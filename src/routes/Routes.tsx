@@ -22,7 +22,8 @@ import TransmissionDetail
 import FuelDetail from "../layouts/admin-layout/admin-vehicle-features/fuels/fuel-detail/FuelDetail";
 import ColorDetail from "../layouts/admin-layout/admin-vehicle-features/colors/color-detail/ColorDetail";
 import Models from "../layouts/admin-layout/admin-vehicle-features/models/Models";
-import Deneme from "../layouts/admin-layout/admin-vehicle-features/deneme/Deneme";
+import ModelDetail from "../layouts/admin-layout/admin-vehicle-features/models/model-detail/ModelDetail";
+import AdminHomePage from "../layouts/admin-layout/admin-home-page/AdminHomePage";
 
 const Routes = () => {
     const routes = useRoutes([
@@ -62,7 +63,7 @@ const Routes = () => {
             children: [
                 {
                     index: true,
-                    element: <Deneme/>
+                    element: <AdminHomePage/>
                     // element: <AdminHomePage/>
                 },
 
@@ -131,12 +132,12 @@ const Routes = () => {
                     element: <Models/>
                 },
                 {
-                    path: "araba-ozellikleri/model",
-                    element: "araba-ozellikleri model/model-ekle"
+                    path: "araba-ozellikleri/model/model-ekle",
+                    element: <ModelDetail/>
                 },
                 {
-                    path: "araba-ozellikleri/model",
-                    element: "araba-ozellikleri model/model-duzenle/:id"
+                    path: "araba-ozellikleri/model/model-duzenle/:id",
+                    element: <ModelDetail/>
                 },
 
                 // Transmission

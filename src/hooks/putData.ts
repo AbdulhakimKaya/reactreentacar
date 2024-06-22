@@ -2,7 +2,7 @@
 import {notification} from 'antd';
 import {GenericDataItem} from "./Generic";
 
-interface PostDataProps {
+interface PutDataProps {
     tempUrl?: string;
     tempFilter?: boolean;
     purchaseFilter?: boolean;
@@ -22,7 +22,7 @@ export const putData = async ({
                                   values,
                                   params,
                                   includeMultipartHeader = false
-                              }: PostDataProps) => {
+                              }: PutDataProps) => {
     // const accessToken = LocalStorageHelper.getAccessToken();
     // const clientId = LocalStorageHelper.getClientId();
     // const clientKeyId = LocalStorageHelper.getClientKeyId();
