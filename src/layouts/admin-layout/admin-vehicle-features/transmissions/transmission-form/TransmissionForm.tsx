@@ -88,7 +88,7 @@ const TransmissionForm: React.FC<TransmissionProps> = (props) => {
                             validateStatus="validating"
                             hidden={true}
                         >
-                            <Input className="input-uzunluk id-ayar" disabled={true}/>
+                            <Input disabled={true}/>
                         </Form.Item>
                     ) : null}
                     <Form.Item

@@ -22,12 +22,15 @@ const ModelForm: React.FC<ModelProps> = ({id, modelData}) => {
     const endpoint = `http://localhost:5039/api/Models/`
     const navigate = useNavigate();
 
+    // Brand Endpoint
     const [brands, setBrands] = useState<Brand[]>([]);
     const brandEndpoint = 'http://localhost:5039/api/Brands/getall';
 
+    // Fuel Endpoint
     const [fuels, setFuels] = useState<Fuel[]>([]);
     const fuelEndpoint = 'http://localhost:5039/api/Fuels/getall';
 
+    // Transmission Endpoint
     const [transmissions, setTransmissions] = useState<Transmission[]>([]);
     const transmissionEndpoint = 'http://localhost:5039/api/Transmissions/getall';
 
@@ -55,7 +58,6 @@ const ModelForm: React.FC<ModelProps> = ({id, modelData}) => {
             try {
                 const data = await fetchDataDetail(transmissionEndpoint);
                 setTransmissions(data?.data); // Extract items array from data
-                console.log(data)
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
@@ -72,9 +74,7 @@ const ModelForm: React.FC<ModelProps> = ({id, modelData}) => {
             fuelId: modelData ? modelData.fuelId : '',
             transmissionId: modelData ? modelData.transmissionId : '',
         });
-
     }, [modelData, form]);
-    console.log(modelData)
 
     const onFinish = async (values: any) => {
         try {
@@ -137,7 +137,7 @@ const ModelForm: React.FC<ModelProps> = ({id, modelData}) => {
                             validateStatus="validating"
                             hidden={true}
                         >
-                            <Input className="input-uzunluk id-ayar" disabled={true}/>
+                            <Input disabled={true}/>
                         </Form.Item>
                     ) : null}
 

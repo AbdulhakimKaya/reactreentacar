@@ -38,7 +38,6 @@ const Transmissions = () => {
             try {
                 const data = await fetchDataDetail(endpoint);
                 setTransmissions(data?.data); // Extract items array from data
-                console.log(data)
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
