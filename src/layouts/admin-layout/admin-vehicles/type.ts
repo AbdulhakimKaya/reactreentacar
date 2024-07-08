@@ -1,12 +1,15 @@
 import {GenericDataItem} from "../../../hooks/Generic";
 
-export default interface Vehicle extends GenericDataItem {
+export default interface VehicleType extends GenericDataItem {
     id: string;
+    modelId: string;
     modelName: string;
     brandName: string;
     fuelName: string;
     transmissionName: string;
+    colorId: string;
     colorName: string;
+    kilometer: number;
     dailyPrice: number;
     modelYear: number;
     plate: string;

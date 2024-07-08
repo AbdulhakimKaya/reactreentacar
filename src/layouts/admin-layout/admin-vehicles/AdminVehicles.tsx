@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import './AdminVehicles.scss'
 import classNames from "classnames";
-import {Col, Popconfirm, Row, Table, type TableProps, Tag} from "antd";
+import {Col, notification, Popconfirm, Row, Table, type TableProps, Tag} from "antd";
 import Button from "../../../components/button/Button";
 import {Link} from "react-router-dom";
 import {DeleteOutlined} from "@ant-design/icons";
 import {fetchDataDetail} from "../../../hooks/getData";
-import Vehicle from "./type";
+import VehicleType from "./type";
+import {deleteData} from "../../../hooks/deleteData";
 
 
 const AdminVehicles = () => {
-    const columns: TableProps<Vehicle>['columns'] = [
+    const columns: TableProps<VehicleType>['columns'] = [
         {
             title: 'Resim',
             dataIndex: 'imagesRoot',
@@ -22,7 +23,7 @@ const AdminVehicles = () => {
                         <img
                             src={`http://localhost:5039/images/${imagesRoot[0]}`}
                             alt="Car Image"
-                            style={{width: 180, height: "auto", objectFit: "contain"}}
+                            style={{width: 180, height: "auto", objectFit: "cover"}}
                         />
                     )}
                 </div>
@@ -83,22 +84,29 @@ const AdminVehicles = () => {
             width: 100,
             render: (carState: number) => (
                 <>
-                    {carState === 1 ? (
-                        <Tag color="green">Müsait</Tag>
-                    ) : (
-                        <Tag color="red">Müsait Değil</Tag>
-                    )}
+                    {
+                        carState === 0 ? (
+                            <Tag color="green">Müsait</Tag>
+                        ) : carState === 1 ? (
+                            <Tag color="red">Kiralandı</Tag>
+                        ) : carState === 2 ? (
+                            <Tag color="blue">Bakımda</Tag>
+                        ) : (
+                            <Tag color="orange">Rezerve edildi</Tag>
+                        )
+                    }
                 </>
             )
         },
         {
             title: '',
             key: 'action',
-            width: 200,
-            render: () => (
+            width: 180,
+            align: "right",
+            render: (record) => (
                 <Row gutter={8}>
                     <Col>
-                        <Link to={"/admin/araclar/arac-duzenle"}>
+                        <Link to={`/admin/araclar/arac-duzenle/${record.id}`}>
                             <Button size={"xSmall"} variant={"edit"}>Düzenle</Button>
                         </Link>
                     </Col>
@@ -106,8 +114,8 @@ const AdminVehicles = () => {
                         <Popconfirm
                             title="Aracın silinmesi"
                             description="Aracı silmek istediğinizden emin misiniz?"
-                            // onConfirm={() => confirm("id")}
-                            // onCancel={cancel}
+                            onConfirm={() => confirm(record.id)}
+                            onCancel={cancel}
                             okText="Evet"
                             cancelText="Vazgeç"
                             placement="topRight"
@@ -124,8 +132,29 @@ const AdminVehicles = () => {
     ];
 
     const classes = classNames("db-admin-vehicles")
-    const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+    const [vehicles, setVehicles] = useState<VehicleType[]>([]);
     const endpoint = 'http://localhost:5039/api/Cars/getall';
+
+    const confirm = async (id: string) => {
+        const endpointDelete = `http://localhost:5039/api/Cars/delete/${id}`;
+        try {
+            if (id) {
+                const {isSuccess} = await deleteData(endpointDelete);
+                if (isSuccess) {
+                    setVehicles(vehicles.filter(vehicle => vehicle.id !== id));
+                }
+            }
+        } catch (errorInfo) {
+            console.error('Deletion failed:', errorInfo);
+        }
+    };
+
+    const cancel = () => {
+        notification.info({
+            message: 'İptal Edildi',
+            description: 'Silme işlemi iptal edildi.',
+        });
+    };
 
     useEffect(() => {
         const fetchCars = async () => {

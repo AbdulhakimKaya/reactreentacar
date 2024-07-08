@@ -19,7 +19,7 @@ const AdminLayout = () => {
         <div className={`${classes} p-5 min-h-[calc(100vh - 20px);]:`}>
             <Row className={classes} wrap={false}>
                 {/* responsive tasarım için isSmallScreen ise 0 yapıp Sidebar'a Drawer eklenecek */}
-                <Col style={{minWidth: collapsed ? 100 : 320}}>
+                <Col style={{minWidth: collapsed ? 120 : 320}}>
                     <Sidebar collapsed={collapsed} toggleCollapsed={toggleCollapsed}/>
                 </Col>
                 <Col flex={'auto'}>

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './VehicleDetail.scss'
-import Vehicle from "../../admin-layout/admin-vehicles/type";
+import VehicleType from "../../admin-layout/admin-vehicles/type";
 import {fetchDataDetail} from "../../../hooks/getData";
 import {useParams} from "react-router-dom";
 
@@ -17,6 +17,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/bundle';
 import classNames from 'classnames';
+import Button from "../../../components/button/Button";
+import Badge from "../../../components/badge/Badge";
+import ReservationModal from "../../../components/reservationModal/ReservationModal";
 
 
 const VehicleDetail = () => {
@@ -30,7 +33,7 @@ const VehicleDetail = () => {
 
     const {id} = useParams();
     const endpoint = `http://localhost:5039/api/Cars/${id}`;
-    const [vehicle, setVehicle] = useState<Vehicle>();
+    const [vehicle, setVehicle] = useState<VehicleType>();
 
     const vehicleDetail = [
         {
@@ -69,6 +72,16 @@ const VehicleDetail = () => {
             children: vehicle?.plate,
         },
     ]
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
     useEffect(() => {
         const fetchCars = async () => {
@@ -138,6 +151,18 @@ const VehicleDetail = () => {
                 <Col span={9}>
                     <div className="vehicle-info">
                         <Descriptions title="Araç Bilgileri" bordered size={"middle"} column={1} items={vehicleDetail}/>
+                        <div className="font-semibold text-3xl pt-12 flex items-center justify-between">
+                            <Badge isAvailable={vehicle?.carState} variant={"detail"}/>
+                            {vehicle?.dailyPrice}₺
+                        </div>
+                        <div className="flex-1">
+                            <Button size="large" variant={"black"} disabled={vehicle?.carState !== 0}
+                                    onClick={showModal}>
+                                Rezervasyon Yap
+                            </Button>
+                            <ReservationModal isModalOpen={isModalOpen}
+                                              handleCancel={handleCancel}/>
+                        </div>
                     </div>
                 </Col>
             </Row>

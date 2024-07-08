@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './HomeSlider.scss'
 import classNames from "classnames";
 
@@ -20,10 +20,28 @@ import car3 from "../../../../assets/images/xc90-3.avif";
 import car4 from "../../../../assets/images/xc90-4.avif";
 import car5 from "../../../../assets/images/xc90-5.avif";
 import car6 from "../../../../assets/images/xc90-6.avif";
+import {fetchDataDetail} from "../../../../hooks/getData";
+import SliderType from "./type";
 
 
 const HomeSlider = () => {
     const classes = classNames("db-home-slider")
+    const [sliders, setSliders] = useState<SliderType[]>([]);
+    const endpoint = 'http://localhost:5039/api/Sliders/getall';
+
+    useEffect(() => {
+        const fetchSliders = async () => {
+            try {
+                const data = await fetchDataDetail(endpoint);
+                setSliders(data?.data);
+            } catch (error) {
+                console.error('Error fetching data: ', error);
+            }
+        };
+
+        fetchSliders();
+    }, []);
+
     const images = [car, car2, car3, car4, car5, car6]
 
     return (
@@ -43,10 +61,10 @@ const HomeSlider = () => {
                         "--swiper-navigation-size": "20px",
                     }}
                 >
-                    {images.map((item, index) => (
+                    {sliders.map((item, index) => (
                         <div className="product-image">
                             <SwiperSlide key={index}>
-                                <img src={item} alt={"slider image"}/>
+                                <img src={item.imageUrl} alt={"slider image"}/>
                             </SwiperSlide>
                         </div>
                     ))}

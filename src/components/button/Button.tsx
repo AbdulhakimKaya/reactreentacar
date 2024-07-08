@@ -10,6 +10,7 @@ interface ButtonProps {
     htmlType?: 'button' | 'submit' | 'reset';
     children: ReactNode;
     onClick?: MouseEventHandler<HTMLElement>;
+    disabled?: boolean;
 }
 
 export default function Button({
@@ -19,6 +20,7 @@ export default function Button({
                                    className,
                                    children,
                                    htmlType = 'button',
+                                   disabled = false,
                                    ...props
                                }: ButtonProps) {
 
@@ -40,9 +42,11 @@ export default function Button({
                     "bg-[#333333ff] text-white hover:bg-[#141414ff]": variant === 'black',
                     "bg-[#fffacd] text-[#ffa500] border border-[#ffa500] hover:bg-[#ffa500] hover:text-white": variant === 'edit',
                     "bg-[#c81d25] text-white border border-[#c81d25]": variant === 'delete',
+                    "cursor-not-allowed opacity-50": disabled,
                     [className!]: className,
                 }
             ),
+            disabled,
             ...props
         },
         children);

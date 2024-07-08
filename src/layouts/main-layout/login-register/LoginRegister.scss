@@ -103,13 +103,12 @@
           width: 50%;
 
           .field {
-            height: 50px;
             width: 100%;
             margin-top: 20px;
 
             input,
             button {
-              height: 100%;
+              height: 50px;
               width: 100%;
               outline: none;
               padding-left: 15px;
@@ -123,6 +122,23 @@
             input:focus {
               border-color: #c81d25;
               box-shadow: none;
+            }
+          }
+
+          .field-password {
+            width: 100%;
+            margin-top: 20px;
+
+            .ant-input-password {
+              height: 50px;
+              width: 100%;
+              outline: none;
+              padding-left: 15px;
+              font-size: 17px;
+              border-radius: 50px;
+              border: 1px solid #c81d25;
+              border-bottom-width: 2px;
+              transition: all 0.4s ease;
             }
           }
 

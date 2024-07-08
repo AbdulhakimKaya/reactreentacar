@@ -50,6 +50,7 @@ const Sidebar: React.FC<SidebarProps> = (props) => {
                     <Menu.Item
                         key={item.key}
                         icon={item.icon}
+                        onClick={item.onClick}
                     >
                         <Link to={item.url!}>
                             {item.label}

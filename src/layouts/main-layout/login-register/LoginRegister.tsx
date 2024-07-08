@@ -1,13 +1,19 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import './LoginRegister.scss';
 import classNames from "classnames";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {Form, Input, notification} from "antd";
+import Button from "../../../components/button/Button";
+import {postData} from "../../../hooks/postData";
 
 function LoginRegister() {
     const classes = classNames("db-login-register")
-
+    const isFormValidating = useRef(false);
+    const [form] = Form.useForm();
     const [isLogin, setIsLogin] = useState(true);
-
+    const navigate = useNavigate();
+    const endpointLogin = `http://localhost:5039/api/Auth/login/`
+    const endpointRegister = `http://localhost:5039/api/Auth/register/`
     const handleLoginClick = () => {
         setIsLogin(true);
     };
@@ -15,7 +21,56 @@ function LoginRegister() {
     const handleSignupClick = () => {
         setIsLogin(false);
     };
-
+    const onFinishLogin = async (values: any) => {
+        try {
+            isFormValidating.current = true;
+            await form.validateFields();
+            let data: any
+            data = await postData({
+                tempUrl: endpointLogin,
+                values: values,
+            });
+            sessionStorage.setItem('accessToken', data.accessToken.token);
+            console.log(data)
+            if (data) {
+                notification.success({
+                    message: 'Success',
+                    description: 'İşlem başarılı.',
+                });
+                navigate('/');
+                window.location.reload();
+            }
+        } catch (errorInfo) {
+            console.error('Validation failed:', errorInfo);
+        } finally {
+            isFormValidating.current = false;
+        }
+    };
+    const onFinishRegister = async (values: any) => {
+        try {
+            isFormValidating.current = true;
+            await form.validateFields();
+            let data: any
+            data = await postData({
+                tempUrl: endpointRegister,
+                values: values,
+            });
+            sessionStorage.setItem('accessToken', data.token);
+            console.log(data)
+            if (data) {
+                notification.success({
+                    message: 'Success',
+                    description: 'İşlem başarılı.',
+                });
+                navigate('/');
+                window.location.reload();
+            }
+        } catch (errorInfo) {
+            console.error('Validation failed:', errorInfo);
+        } finally {
+            isFormValidating.current = false;
+        }
+    };
     return (
         <div className={classes}>
             <div className="wrapper">
@@ -54,27 +109,28 @@ function LoginRegister() {
                         </label>
                         <div className={`slide-tab ${!isLogin ? "move" : ""}`}></div>
                     </div>
+
                     <div className="form-inner" style={{marginLeft: isLogin ? "0%" : "-100%"}}>
-                        <form className="login" id="login-form">
+
+                        {/* Login Form */}
+                        <Form onFinish={onFinishLogin} className="login" id="login-form">
                             <div className="field">
-                                <input
-                                    type="emailll"
-                                    name="emailll"
-                                    id="emailll"
-                                    className=""
-                                    placeholder="E-Post Adresiniz"
-                                    required
-                                />
+                                <Form.Item
+                                    id="email"
+                                    name="email"
+                                    rules={[{type: 'email', required: true}]}
+                                >
+                                    <Input placeholder="E-Post Adresiniz"/>
+                                </Form.Item>
                             </div>
-                            <div className="field">
-                                <input
-                                    type="password"
-                                    name="password"
+                            <div className="field-password">
+                                <Form.Item
                                     id="password"
-                                    className=""
-                                    placeholder="Şifreniz"
-                                    required
-                                />
+                                    name="password"
+                                    rules={[{required: true}]}
+                                >
+                                    <Input.Password placeholder="Şifreniz"/>
+                                </Form.Item>
                             </div>
                             <div className="pass-link">
                                 <Link to={"/"} className="ml-3 mt-1 text-decoration-none">
@@ -82,79 +138,65 @@ function LoginRegister() {
                                 </Link>
                             </div>
                             <div className="field">
-                                <button
-                                    type="submit"
-                                    id="login-link"
-                                >
-                                    Giriş Yap
-                                </button>
+                                <Form.Item>
+                                    <Button htmlType="submit">
+                                        Giriş Yap
+                                    </Button>
+                                </Form.Item>
                             </div>
-                        </form>
-                        <form
+                        </Form>
+
+
+                        {/* Register Form */}
+                        <Form
                             className="signup"
                             id="sign-up-form"
+                            onFinish={onFinishRegister}
                         >
                             <div className="field">
-                                <input
-                                    type="text"
-                                    name="ad"
-                                    pattern="[A-Za-z]*"
-                                    className=""
-                                    placeholder="Ad"
-                                    required
-                                    id="id_ad"
-                                />
-                            </div>
-                            <div className="field">
-                                <input
-                                    type="text"
-                                    name="soyad"
-                                    pattern="[A-Za-z]*"
-                                    className=""
-                                    placeholder="Soyad"
-                                    required
-                                    id="id_soyad"
-                                />
-                            </div>
-                            <div className="field">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    className=""
-                                    placeholder="E-mail"
-                                    required
-                                    id="id_email"
-                                />
-                            </div>
-                            <div className="field">
-                                <input
-                                    type="password"
-                                    name="password"
-                                    className=""
-                                    placeholder="Parola"
-                                    required
-                                    id="id_password"
-                                />
-                            </div>
-                            <div className="field">
-                                <input
-                                    type="password"
-                                    name="password_confirm"
-                                    className=""
-                                    placeholder="Parola Tekrarı"
-                                    required
-                                    id="id_password_confirm"
-                                />
-                            </div>
-                            <div className="field">
-                                <button
-                                    id="kayit-ol-btn"
-                                    type="submit"
+                                <Form.Item
+                                    id="firstName"
+                                    name="firstName"
+                                    rules={[{type: 'string', required: true}]}
                                 >
-                                    Kayıt Ol
-                                </button>
+                                    <Input placeholder="İsim"/>
+                                </Form.Item>
                             </div>
-                        </form>
+                            <div className="field">
+                                <Form.Item
+                                    id="lastName"
+                                    name="lastName"
+                                    rules={[{type: 'string', required: true}]}
+                                >
+                                    <Input placeholder="Soyisim"/>
+                                </Form.Item>
+                            </div>
+                            <div className="field">
+                                <Form.Item
+                                    id="email"
+                                    name="email"
+                                    rules={[{type: 'email', required: true}]}
+                                >
+                                    <Input placeholder="E-Post Adresiniz"/>
+                                </Form.Item>
+                            </div>
+                            <div className="field-password">
+                                <Form.Item
+                                    id="password"
+                                    name="password"
+                                    rules={[{required: true}]}
+                                >
+                                    <Input.Password placeholder="Şifreniz"/>
+                                </Form.Item>
+                            </div>
+                            <div className="field">
+                                <Form.Item>
+                                    <Button htmlType="submit">
+                                        Kayıt Ol
+                                    </Button>
+                                </Form.Item>
+                            </div>
+                        </Form>
                     </div>
                 </div>
             </div>

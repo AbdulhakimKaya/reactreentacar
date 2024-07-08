@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import './VehicleList.scss'
-import Filters from "../../../components/filters/Filters";
 import {Col, Row} from "antd";
 import classNames from "classnames";
 import Badge from "../../../components/badge/Badge";
@@ -15,7 +14,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/bundle';
-import Vehicle from "../../admin-layout/admin-vehicles/type";
+import VehicleType from "../../admin-layout/admin-vehicles/type";
 import {fetchDataDetail} from "../../../hooks/getData";
 import Button from "../../../components/button/Button";
 import {Link} from "react-router-dom";
@@ -23,7 +22,7 @@ import {Link} from "react-router-dom";
 
 function VehicleList() {
     const classes = classNames("vehicle-list")
-    const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+    const [vehicles, setVehicles] = useState<VehicleType[]>([]);
     const endpoint = 'http://localhost:5039/api/Cars/getall';
 
     useEffect(() => {
@@ -41,7 +40,8 @@ function VehicleList() {
 
     return (
         <div className={classes}>
-            <Filters/>
+            {/* ToDo: Filters yapısı eklenecek */}
+            {/*<Filters/>*/}
             <Row gutter={[64, 64]} className="pt-10 pb-20">
                 {
                     vehicles.map((item, index) => (
@@ -49,7 +49,7 @@ function VehicleList() {
                             <div className="vehicle-list-item">
                                 <div
                                     className="flex flex-col border border-[#cacacaff] p-1 w-96 product-card rounded-2xl">
-                                    <Badge isAvailable={item.carState}/>
+                                    <Badge isAvailable={item.carState} variant={"list"}/>
                                     <div className="product-images p-3">
                                         <Swiper
                                             modules={[Pagination, Navigation, Scrollbar, A11y, Autoplay]}
@@ -98,7 +98,7 @@ function VehicleList() {
                                         </div>
                                         <div className="flex justify-between gap-1">
                                             <div className="flex-1">
-                                                <Button size="large" variant={"black"}>
+                                                <Button size="large" variant={"black"} disabled={item?.carState !== 0}>
                                                     Rezervasyon Yap
                                                 </Button>
                                             </div>

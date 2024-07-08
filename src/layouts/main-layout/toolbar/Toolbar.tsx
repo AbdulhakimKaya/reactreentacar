@@ -49,7 +49,6 @@ function Toolbar() {
                         <div className="flex items-center">
                             <Menu
                                 mode="horizontal"
-                                className={"toolbar-theme"}
                                 forceSubMenuRender={true}
                                 selectedKeys={selectedKeys}
                                 disabledOverflow={true}
@@ -59,7 +58,7 @@ function Toolbar() {
                                         <Menu.Item
                                             key={item.key}
                                         >
-                                            <Link className="menu-link" to={item.url}>
+                                            <Link to={item.url}>
                                                 {item.label}
                                             </Link>
                                         </Menu.Item>
